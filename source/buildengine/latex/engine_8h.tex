@@ -1,0 +1,1851 @@
+\section{engine.\-h File Reference}
+\label{engine_8h}\index{engine.\-h@{engine.\-h}}
+
+
+Main engine include file.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\-U\-P\-E\-R\-B\-U\-I\-L\-D}~/$\ast$ don't touch this. $\ast$/\label{engine_8h_aebe0a2c1d58319bd77cd566351196d61}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries faketimerhandler} (void)\label{engine_8h_a57d0f593c2230b56e8e9a9675f03fc9d}
+
+\item 
+int {\bfseries initmouse} (void)\label{engine_8h_a662374b4d72a49e60b928be0c41afc4f}
+
+\item 
+int {\bf setgamemode} (char davidoption, long daxdim, long daydim)
+\begin{DoxyCompactList}\small\item\em Set the video mode. \end{DoxyCompactList}\item 
+int {\bf getceilzofslope} (short sectnum, long dax, long day)
+\begin{DoxyCompactList}\small\item\em Get the ceiling z value for a point in a sector. \end{DoxyCompactList}\item 
+int {\bf getflorzofslope} (short sectnum, long dax, long day)
+\begin{DoxyCompactList}\small\item\em Get the floor z value for a point in a sector. \end{DoxyCompactList}\item 
+void {\bf getzsofslope} (short sectnum, long dax, long day, long $\ast$ceilz, long $\ast$florz)
+\begin{DoxyCompactList}\small\item\em Get the floor and ceiling z values for a point. \end{DoxyCompactList}\item 
+void {\bf setaspect} (long daxrange, long daaspect)
+\begin{DoxyCompactList}\small\item\em Set aspect ratio and viewing range angle. \end{DoxyCompactList}\item 
+int {\bf insertsprite} (short sectnum, short statnum)
+\begin{DoxyCompactList}\small\item\em Insert a sprite into a sector. \end{DoxyCompactList}\item 
+void {\bf updatesector} (long x, long y, short $\ast$sectnum)
+\begin{DoxyCompactList}\small\item\em Update a sector pointer, given x and y values. \end{DoxyCompactList}\item 
+int {\bf lastwall} (short point)
+\begin{DoxyCompactList}\small\item\em Find the wall to the left of another wall. \end{DoxyCompactList}\item 
+void {\bf initspritelists} (void)
+\begin{DoxyCompactList}\small\item\em Set up the sprite lists. \end{DoxyCompactList}\item 
+int {\bf deletesprite} (short spritenum)
+\begin{DoxyCompactList}\small\item\em Delete a sprite from the map. \end{DoxyCompactList}\item 
+int {\bfseries insertspritesect} (short sectnum)\label{engine_8h_a4440b76d109ad610d7bbc88b65713b63}
+
+\item 
+int {\bfseries deletespritesect} (short deleteme)\label{engine_8h_a0d83e6f5a81eb08f1fa67a99144cbffc}
+
+\item 
+int {\bfseries deletespritestat} (short deleteme)\label{engine_8h_af367e7f1ad520c327ad0bc33ced7b5b9}
+
+\item 
+int {\bfseries insertspritestat} (short statnum)\label{engine_8h_a04669d2fbafaee507a76326d161211fc}
+
+\item 
+int {\bfseries changespritesect} (short spritenum, short newsectnum)\label{engine_8h_a99959cc6b136906ba707ab33ea17729a}
+
+\item 
+int {\bfseries changespritestat} (short spritenum, short newstatnum)\label{engine_8h_a74daf10dae2ffb40f7be7107ab13352f}
+
+\item 
+void {\bf loadtile} (short tilenume)
+\begin{DoxyCompactList}\small\item\em Loads a tile into memory. \end{DoxyCompactList}\item 
+void {\bfseries setmmxoverlay} (int isenabled)\label{engine_8h_ae71266dff7824177c59d85b4f414fcae}
+
+\item 
+int {\bfseries getmmxoverlay} (void)\label{engine_8h_a706f07d676acd3b4f6c128f68aae3ec9}
+
+\item 
+void {\bf nextpage} (void)
+\begin{DoxyCompactList}\small\item\em Flip to next drawing page. \end{DoxyCompactList}\item 
+void {\bf drawrooms} (long daposx, long daposy, long daposz, short daang, long dahoriz, short dacursectnum)
+\begin{DoxyCompactList}\small\item\em Draw the 3\-D screen to the current drawing page. \end{DoxyCompactList}\item 
+int {\bf loadboard} (char $\ast$filename, long $\ast$daposx, long $\ast$daposy, long $\ast$daposz, short $\ast$daang, short $\ast$dacursectnum)
+\begin{DoxyCompactList}\small\item\em Loads a map from disk. \end{DoxyCompactList}\item 
+void {\bf drawmasks} (void)
+\begin{DoxyCompactList}\small\item\em Draw the sprites and maskwalls to the current drawing page. \end{DoxyCompactList}\item 
+void {\bf printext256} (long xpos, long ypos, short col, short backcol, char name[82], char fontsize)
+\begin{DoxyCompactList}\small\item\em Draws a text message to the screen. \end{DoxyCompactList}\item 
+void {\bf printext256\-\_\-noupdate} (long xpos, long ypos, short col, short backcol, char name[82], char fontsize)
+\begin{DoxyCompactList}\small\item\em Draws a text message to the screen without refreshing. \end{DoxyCompactList}\item 
+void {\bf initengine} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the Build Engine. \end{DoxyCompactList}\item 
+void {\bf uninitengine} (void)
+\begin{DoxyCompactList}\small\item\em Uninitialize the Build Engine. \end{DoxyCompactList}\item 
+int {\bf loadpics} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Loads an artwork file into the engine. \end{DoxyCompactList}\item 
+int {\bf saveboard} (char $\ast$filename, long $\ast$daposx, long $\ast$daposy, long $\ast$daposz, short $\ast$daang, short $\ast$dacursectnum)
+\begin{DoxyCompactList}\small\item\em Saves a map to disk. \end{DoxyCompactList}\item 
+void {\bf plotpixel} (long x, long y, char col)
+\begin{DoxyCompactList}\small\item\em Plots a pixel to the screen. \end{DoxyCompactList}\item 
+unsigned char {\bf getpixel} (long x, long y)
+\begin{DoxyCompactList}\small\item\em Returns the color of a pixel on screen. \end{DoxyCompactList}\item 
+void {\bf setbrightness} (char dabrightness, unsigned char $\ast$dapal)
+\begin{DoxyCompactList}\small\item\em Adjust the gamma of a V\-G\-A palette. \end{DoxyCompactList}\item 
+int {\bf screencapture} (char $\ast$filename, char inverseit)
+\begin{DoxyCompactList}\small\item\em Take a screenshot. \end{DoxyCompactList}\item 
+void {\bf getmousevalues} (short $\ast$mousx, short $\ast$mousy, short $\ast$bstatus)
+\begin{DoxyCompactList}\small\item\em Get the current mouse location and button state. \end{DoxyCompactList}\item 
+int {\bf clipmove} (long $\ast$x, long $\ast$y, long $\ast$z, short $\ast$sectnum, long xvect, long yvect, long walldist, long ceildist, long flordist, unsigned long cliptype)
+\begin{DoxyCompactList}\small\item\em Move an object using collision detection. \end{DoxyCompactList}\item 
+void {\bf getzrange} (long x, long y, long z, short sectnum, long $\ast$ceilz, long $\ast$ceilhit, long $\ast$florz, long $\ast$florhit, long walldist, unsigned long cliptype)
+\begin{DoxyCompactList}\small\item\em Find the highest and lowest z coordinates your clipping box can get to. \end{DoxyCompactList}\item 
+int {\bf getangle} (long xvect, long yvect)
+\begin{DoxyCompactList}\small\item\em Gets the angle of a vector. \end{DoxyCompactList}\item 
+void {\bf alignceilslope} (short dasect, long x, long y, long z)
+\begin{DoxyCompactList}\small\item\em Adjust the slope of a sector's ceiling to pass through a point. \end{DoxyCompactList}\item 
+void {\bf alignflorslope} (short dasect, long x, long y, long z)
+\begin{DoxyCompactList}\small\item\em Adjust the slope of a sector's floor to pass through a point. \end{DoxyCompactList}\item 
+int {\bf hitscan} (long xs, long ys, long zs, short sectnum, long vx, long vy, long vz, short $\ast$hitsect, short $\ast$hitwall, short $\ast$hitsprite, long $\ast$hitx, long $\ast$hity, long $\ast$hitz, unsigned long cliptype)
+\begin{DoxyCompactList}\small\item\em Project a ray and report what it hit. \end{DoxyCompactList}\item 
+int {\bf inside} (long x, long y, short sectnum)
+\begin{DoxyCompactList}\small\item\em Tests to see if a 2d point is in a sector. \end{DoxyCompactList}\item 
+void {\bf setfirstwall} (short sectnum, short newfirstwall)
+\begin{DoxyCompactList}\small\item\em Sets the first wall of a sector. \end{DoxyCompactList}\item 
+void {\bf rotatepoint} (long xpivot, long ypivot, long x, long y, short daang, long $\ast$x2, long $\ast$y2)
+\begin{DoxyCompactList}\small\item\em Rotate / translate a point. \end{DoxyCompactList}\item 
+int {\bf drawtilescreen} (long pictopleft, long picbox)
+\begin{DoxyCompactList}\small\item\em Draw the tile screen. \end{DoxyCompactList}\item 
+void {\bf clearview} (long dacol)
+\begin{DoxyCompactList}\small\item\em Clear the current video page to a given color. \end{DoxyCompactList}\item 
+void {\bf clearallviews} (long dacol)
+\begin{DoxyCompactList}\small\item\em Clear all video pages to a given color. \end{DoxyCompactList}\item 
+void {\bf draw2dgrid} (long posxe, long posye, short ange, long zoome, short gride)
+\begin{DoxyCompactList}\small\item\em Draw a 2\-D grid. \end{DoxyCompactList}\item 
+void {\bf draw2dscreen} (long posxe, long posye, short ange, long zoome, short gride)
+\begin{DoxyCompactList}\small\item\em Draw the 2\-D screen. \end{DoxyCompactList}\item 
+int {\bf sectorofwall} (short theline)
+\begin{DoxyCompactList}\small\item\em A fast routine to find the sector that owns a certain wall. \end{DoxyCompactList}\item 
+int {\bf setsprite} (short spritenum, long newx, long newy, long newz)
+\begin{DoxyCompactList}\small\item\em Puts a sprite somewhere, without checking for validity. \end{DoxyCompactList}\item 
+void {\bf dragpoint} (short pointhighlight, long dax, long day)
+\begin{DoxyCompactList}\small\item\em Drag a wall to a new point. \end{DoxyCompactList}\item 
+int {\bf ksqrt} (long num)
+\begin{DoxyCompactList}\small\item\em Integer Square Root Function. \end{DoxyCompactList}\item 
+int {\bf loopnumofsector} (short sectnum, short wallnum)
+\begin{DoxyCompactList}\small\item\em Find number of walls in sector, up to a known wall. \end{DoxyCompactList}\item 
+int {\bf cansee} (long x1, long y1, long z1, short sect1, long x2, long y2, long z2, short sect2)
+\begin{DoxyCompactList}\small\item\em Check if two points can see each other. \end{DoxyCompactList}\item 
+int {\bfseries lintersect} (long x1, long y1, long z1, long x2, long y2, long z2, long x3, long y3, long x4, long y4, long $\ast$intx, long $\ast$inty, long $\ast$intz)\label{engine_8h_a9ba80cfb3392dc12c7fca3009acc5108}
+
+\item 
+int {\bfseries rintersect} (long x1, long y1, long z1, long vx, long vy, long vz, long x3, long y3, long x4, long y4, long $\ast$intx, long $\ast$inty, long $\ast$intz)\label{engine_8h_a3d4b7b59b0f5b8164ff09be43e75357a}
+
+\item 
+int {\bf allocatepermanenttile} (short tilenume, long xsiz, long ysiz)
+\begin{DoxyCompactList}\small\item\em Allocate a tile permanently. \end{DoxyCompactList}\item 
+void {\bf drawline256} (long x1, long y1, long x2, long y2, unsigned char col)
+\begin{DoxyCompactList}\small\item\em Draw a line. \end{DoxyCompactList}\item 
+void {\bf copytilepiece} (long tilenume1, long sx1, long sy1, long xsiz, long ysiz, long tilenume2, long sx2, long sy2)
+\begin{DoxyCompactList}\small\item\em Copy a piece of a tile to another tile, skipping transparent pixels. \end{DoxyCompactList}\item 
+int {\bf nextsectorneighborz} (short sectnum, long thez, short topbottom, short direction)
+\begin{DoxyCompactList}\small\item\em Find the next closest ceiling or floor in surrounding sectors. \end{DoxyCompactList}\item 
+int {\bf neartag} (long xs, long ys, long zs, short sectnum, short ange, short $\ast$neartagsector, short $\ast$neartagwall, short $\ast$neartagsprite, long $\ast$neartaghitdist, long neartagrange, char tagsearch)
+\begin{DoxyCompactList}\small\item\em Find the closest objects with tags the player is pointing at. \end{DoxyCompactList}\item 
+int {\bf pushmove} (long $\ast$x, long $\ast$y, long $\ast$z, short $\ast$sectnum, long walldist, long ceildist, long flordist, unsigned long cliptype)
+\begin{DoxyCompactList}\small\item\em Try to keep object away from wall. \end{DoxyCompactList}\item 
+int {\bf krand} (void)
+\begin{DoxyCompactList}\small\item\em Returns a random number. \end{DoxyCompactList}\item 
+void {\bfseries flushperms} (void)\label{engine_8h_a401c9bf042d576b6bf44e044a417755b}
+
+\item 
+void {\bf rotatesprite} (long sx, long sy, long z, short a, short picnum, signed char dashade, char dapalnum, char dastat, long cx1, long cy1, long cx2, long cy2)
+\begin{DoxyCompactList}\small\item\em Rotate and draw a sprite on the screen. \end{DoxyCompactList}\item 
+void {\bf makepalookup} (long palnum, char $\ast$remapbuf, signed char r, signed char g, signed char b, char dastat)
+\begin{DoxyCompactList}\small\item\em Make a lookup table for remapping. \end{DoxyCompactList}\item 
+void {\bf drawmapview} (long dax, long day, long zoome, short ang)
+\begin{DoxyCompactList}\small\item\em Draw the overhead textured map view. \end{DoxyCompactList}\item 
+void {\bf setview} (long x1, long y1, long x2, long y2)
+\begin{DoxyCompactList}\small\item\em Sets the viewing window for 3\-D mode. \end{DoxyCompactList}\item 
+void {\bf setviewtotile} (short tilenume, long xsiz, long ysiz)
+\begin{DoxyCompactList}\small\item\em Shows a tile on screen, saving the previous view. \end{DoxyCompactList}\item 
+void {\bf setviewback} (void)
+\begin{DoxyCompactList}\small\item\em Shows the screen as it was previous to the last {\itshape setviewtotile}. \end{DoxyCompactList}\item 
+void {\bf squarerotatetile} (short tilenume)
+\begin{DoxyCompactList}\small\item\em Rotates a tile's image. \end{DoxyCompactList}\item 
+void {\bfseries preparemirror} (long dax, long day, long daz, short daang, long dahoriz, short dawall, short dasector, long $\ast$tposx, long $\ast$tposy, short $\ast$tang)\label{engine_8h_a9021d2083bfd7e88e12c7affdb4151c3}
+
+\item 
+void {\bfseries completemirror} (void)\label{engine_8h_aa73c4ed004be424ec19c923ba8fe1894}
+
+\item 
+int {\bf clipinsidebox} (long x, long y, short wallnum, long walldist)
+\begin{DoxyCompactList}\small\item\em Check if a clipping box intersects a wall. \end{DoxyCompactList}\item 
+void {\bf qloadkvx} (long voxindex, char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Load a voxel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Main engine include file. A list of all symbols exported from engine.\-c for a game's use. 
+
+\subsection{Function Documentation}
+\index{engine.\-h@{engine.\-h}!alignceilslope@{alignceilslope}}
+\index{alignceilslope@{alignceilslope}!engine.h@{engine.\-h}}
+\subsubsection[{alignceilslope}]{\setlength{\rightskip}{0pt plus 5cm}void alignceilslope (
+\begin{DoxyParamCaption}
+\item[{short}]{dasect, }
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{long}]{z}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aa295a774053b2959a67d341478576bd6}
+
+
+Adjust the slope of a sector's ceiling to pass through a point. 
+
+This function will cause the slope of a sector to change and the sector plane to pass through the point specified. 
+\begin{DoxyParams}{Parameters}
+{\em dasect} & The sector to modify. \\
+\hline
+{\em x} & The X coordinate to intersect. \\
+\hline
+{\em y} & The Y coordinate to intersect. \\
+\hline
+{\em z} & The Z coordinate to intersect. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Given a sector and assuming it's first wall is the pivot wall of the slope, this function makes the slope pass through the x,y,z point. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!alignflorslope@{alignflorslope}}
+\index{alignflorslope@{alignflorslope}!engine.h@{engine.\-h}}
+\subsubsection[{alignflorslope}]{\setlength{\rightskip}{0pt plus 5cm}void alignflorslope (
+\begin{DoxyParamCaption}
+\item[{short}]{dasect, }
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{long}]{z}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab20299088f9e08b4f331c6543ca24556}
+
+
+Adjust the slope of a sector's floor to pass through a point. 
+
+This function will cause the slope of a sector to change and the sector plane to pass through the point specified. 
+\begin{DoxyParams}{Parameters}
+{\em dasect} & The sector to modify. \\
+\hline
+{\em x} & The X coordinate to intersect. \\
+\hline
+{\em y} & The Y coordinate to intersect. \\
+\hline
+{\em z} & The Z coordinate to intersect. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Given a sector and assuming it's first wall is the pivot wall of the slope, this function makes the slope pass through the x,y,z point. \par
+ One use of this function is sine-\/wave floors. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!allocatepermanenttile@{allocatepermanenttile}}
+\index{allocatepermanenttile@{allocatepermanenttile}!engine.h@{engine.\-h}}
+\subsubsection[{allocatepermanenttile}]{\setlength{\rightskip}{0pt plus 5cm}int allocatepermanenttile (
+\begin{DoxyParamCaption}
+\item[{short}]{tilenume, }
+\item[{long}]{xsiz, }
+\item[{long}]{ysiz}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a92756086f48e1fbe28d0ec2a8d6197f5}
+
+
+Allocate a tile permanently. 
+
+This function allocates a place on the cache as permanent. 
+\begin{DoxyParams}{Parameters}
+{\em tilenume} & The tile number to associate with the memory. \\
+\hline
+{\em xsiz} & The width to allocate. \\
+\hline
+{\em ysiz} & The height to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on this function\-: \par
+ Right now, I reset the cache every time you call this function so I would recommend calling this function right after loadpics. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!cansee@{cansee}}
+\index{cansee@{cansee}!engine.h@{engine.\-h}}
+\subsubsection[{cansee}]{\setlength{\rightskip}{0pt plus 5cm}int cansee (
+\begin{DoxyParamCaption}
+\item[{long}]{x1, }
+\item[{long}]{y1, }
+\item[{long}]{z1, }
+\item[{short}]{sect1, }
+\item[{long}]{x2, }
+\item[{long}]{y2, }
+\item[{long}]{z2, }
+\item[{short}]{sect2}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a0e35724dd0c691fe1f0e2e577edad430}
+
+
+Check if two points can see each other. 
+
+This function will determine whether there is a line of sight between two points. 
+\begin{DoxyParams}{Parameters}
+{\em x1} & X coordinate of point 1. \\
+\hline
+{\em y1} & Y coordinate of point 1. \\
+\hline
+{\em z1} & Z coordinate of point 1. \\
+\hline
+{\em sect1} & Point 1's sector. \\
+\hline
+{\em x2} & X coordinate of point 2. \\
+\hline
+{\em y2} & Y coordinate of point 2. \\
+\hline
+{\em z2} & Z coordinate of point 2. \\
+\hline
+{\em sect2} & Point 2's sector. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!clearallviews@{clearallviews}}
+\index{clearallviews@{clearallviews}!engine.h@{engine.\-h}}
+\subsubsection[{clearallviews}]{\setlength{\rightskip}{0pt plus 5cm}void clearallviews (
+\begin{DoxyParamCaption}
+\item[{long}]{dacol}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a87308bc0612cd68e2cbdb5621a7e3569}
+
+
+Clear all video pages to a given color. 
+
+This function clears all the video pages to the color {\itshape dacol}. 
+\begin{DoxyParams}{Parameters}
+{\em dacol} & The color to clear to. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!clearview@{clearview}}
+\index{clearview@{clearview}!engine.h@{engine.\-h}}
+\subsubsection[{clearview}]{\setlength{\rightskip}{0pt plus 5cm}void clearview (
+\begin{DoxyParamCaption}
+\item[{long}]{dacol}
+\end{DoxyParamCaption}
+)}\label{engine_8h_af1ded1bcbaa6d93f46fd977042ed4c22}
+
+
+Clear the current video page to a given color. 
+
+This function clears the current video page to the color {\itshape dacol}. 
+\begin{DoxyParams}{Parameters}
+{\em dacol} & The color to clear to. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!clipinsidebox@{clipinsidebox}}
+\index{clipinsidebox@{clipinsidebox}!engine.h@{engine.\-h}}
+\subsubsection[{clipinsidebox}]{\setlength{\rightskip}{0pt plus 5cm}int clipinsidebox (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{short}]{wallnum, }
+\item[{long}]{walldist}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab1ad15ad722b97d5539bb2f429d53445}
+
+
+Check if a clipping box intersects a wall. 
+
+This function will test if a box intersects a wall.\par
+ It returns T\-R\-U\-E if an intersection ocurrs. 
+\begin{DoxyParams}{Parameters}
+{\em x} & Center of box X. \\
+\hline
+{\em y} & Center of box Y. \\
+\hline
+{\em wallnum} & Wall to test against. \\
+\hline
+{\em walldist} & Radius of clipping box. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\-R\-U\-E if an intersection ocurred. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!clipmove@{clipmove}}
+\index{clipmove@{clipmove}!engine.h@{engine.\-h}}
+\subsubsection[{clipmove}]{\setlength{\rightskip}{0pt plus 5cm}int clipmove (
+\begin{DoxyParamCaption}
+\item[{long $\ast$}]{x, }
+\item[{long $\ast$}]{y, }
+\item[{long $\ast$}]{z, }
+\item[{short $\ast$}]{sectnum, }
+\item[{long}]{xvect, }
+\item[{long}]{yvect, }
+\item[{long}]{walldist, }
+\item[{long}]{ceildist, }
+\item[{long}]{flordist, }
+\item[{unsigned long}]{cliptype}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aec5962b8e62df43cdfc074eadafa01e6}
+
+
+Move an object using collision detection. 
+
+This function will move any object at any velocity and make sure the object stays a certain distance from walls. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$x} & A pointer to the object's X coordinate. \\
+\hline
+{\em $\ast$y} & A pointer to the object's Y coordinate. \\
+\hline
+{\em $\ast$z} & A pointer to the object's Z coordinate. \\
+\hline
+{\em $\ast$sectnum} & A pointer to the object's current sector. \\
+\hline
+{\em xvect} & The desired X velocity of movement. \\
+\hline
+{\em yvect} & The desired Y velocity of movement. \\
+\hline
+{\em walldist} & The distance the object should stay away from walls. \\
+\hline
+{\em ceildist} & The distance the object should stay away from the ceiling. \\
+\hline
+{\em flordist} & The distance the object should stay away from the floor. \\
+\hline
+{\em cliptype} & See description below. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Status of clipping\-: \begin{DoxyItemize}
+\item 0 -- Nothing was touched. \item 32768+wallnum -- Wall first touched. \item 49152+wallnum -- Sprite first touched. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Notes on this function\-: \par
+ xvect and yvect are calculated with the following equations\-: \begin{DoxyItemize}
+\item xvect = velocity $\ast$ cos(angle) \item yvect = velocity $\ast$ sin(angle) \end{DoxyItemize}
+
+
+Ken uses 128 for walldist as his default. \par
+ Don't suddenly increase walldist -- it may cause an object to go throught the wall! \par
+ Cliptype is a mask that tells whether the object should be clipped to or not. \par
+ The lower 16 bits are anded with wall[].cstat and the higher 16 bits are anded with sprite[].cstat. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!copytilepiece@{copytilepiece}}
+\index{copytilepiece@{copytilepiece}!engine.h@{engine.\-h}}
+\subsubsection[{copytilepiece}]{\setlength{\rightskip}{0pt plus 5cm}void copytilepiece (
+\begin{DoxyParamCaption}
+\item[{long}]{tilenume1, }
+\item[{long}]{sx1, }
+\item[{long}]{sy1, }
+\item[{long}]{xsiz, }
+\item[{long}]{ysiz, }
+\item[{long}]{tilenume2, }
+\item[{long}]{sx2, }
+\item[{long}]{sy2}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aced6c86c44fd00912e754f82721a3a7e}
+
+
+Copy a piece of a tile to another tile, skipping transparent pixels. 
+
+This function will copy a piece of {\itshape tilenume1} into {\itshape tilenume2}, skipping transparent parts. If the source coordinates are larger than the source tile, the texture will automatically wrap around. \par
+ N\-O\-T\-E\-: I\-F T\-H\-E M\-O\-D\-I\-F\-I\-E\-D T\-I\-L\-E G\-E\-T\-S R\-E\-M\-O\-V\-E\-D F\-R\-O\-M T\-H\-E C\-A\-C\-H\-E, {\itshape tilenume2} W\-I\-L\-L B\-E R\-E\-S\-E\-T T\-O I\-T\-S O\-R\-I\-G\-I\-N\-A\-L F\-O\-R\-M. \par
+ I\-F Y\-O\-U N\-E\-E\-D T\-O K\-E\-E\-P T\-H\-E T\-I\-L\-E C\-R\-E\-A\-T\-E\-D B\-Y T\-H\-I\-S F\-U\-N\-C\-T\-I\-O\-N, C\-A\-L\-L {\itshape allocatepermanenttile} O\-N I\-T F\-I\-R\-S\-T! 
+\begin{DoxyParams}{Parameters}
+{\em tilenume1} & The source tile \\
+\hline
+{\em sx1} & X coordinate to start the copy from \\
+\hline
+{\em sy1} & Y coordinate to start the copy from. \\
+\hline
+{\em xsiz} & The width to copy from the source. \\
+\hline
+{\em ysiz} & The height to copy from the source. \\
+\hline
+{\em tilenume2} & The destination tile. \\
+\hline
+{\em sx2} & The X coordinate to paste at. \\
+\hline
+{\em sy2} & The Y coordinate to paste at. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!deletesprite@{deletesprite}}
+\index{deletesprite@{deletesprite}!engine.h@{engine.\-h}}
+\subsubsection[{deletesprite}]{\setlength{\rightskip}{0pt plus 5cm}int deletesprite (
+\begin{DoxyParamCaption}
+\item[{short}]{spritenum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_acf6f25f276843ee1a4af20ae6c8f7a4d}
+
+
+Delete a sprite from the map. 
+
+This function will delete a sprite. 
+\begin{DoxyParams}{Parameters}
+{\em spritenum} & The sprite number to delete. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!dragpoint@{dragpoint}}
+\index{dragpoint@{dragpoint}!engine.h@{engine.\-h}}
+\subsubsection[{dragpoint}]{\setlength{\rightskip}{0pt plus 5cm}void dragpoint (
+\begin{DoxyParamCaption}
+\item[{short}]{pointhighlight, }
+\item[{long}]{dax, }
+\item[{long}]{day}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a76bfc1e3136fdaa5ee3f96c6929a5576}
+
+
+Drag a wall to a new point. 
+
+This function will reliabaly drag a point to a new location on the map, using a method identical to dragging the point in 2\-D edit mode. 
+\begin{DoxyParams}{Parameters}
+{\em pointhighlight} & The wall to drag. \\
+\hline
+{\em dax} & The X coordinate to drag to. \\
+\hline
+{\em day} & The Y coordinate to drag to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes about this function\-: Every wall of course has 2 points. When you pass a wall number to this function, you are actually passing 1 point, the left side of the wall (given that you are in the sector of that wall) Got it? 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!draw2dgrid@{draw2dgrid}}
+\index{draw2dgrid@{draw2dgrid}!engine.h@{engine.\-h}}
+\subsubsection[{draw2dgrid}]{\setlength{\rightskip}{0pt plus 5cm}void draw2dgrid (
+\begin{DoxyParamCaption}
+\item[{long}]{posxe, }
+\item[{long}]{posye, }
+\item[{short}]{ange, }
+\item[{long}]{zoome, }
+\item[{short}]{gride}
+\end{DoxyParamCaption}
+)}\label{engine_8h_adbd79bc77eb3974ef554e098538a8b6b}
+
+
+Draw a 2\-D grid. 
+
+This function is used by Build to draw the grid in 2\-D. \par
+ N\-O\-T\-E\-: This function works only in two graphics modes\-: \par
+ 640$\ast$350$\ast$16col, 640$\ast$480$\ast$16col. 
+\begin{DoxyParams}{Parameters}
+{\em posxe} & Left side of visible grid. \\
+\hline
+{\em posye} & Top side of visible grid. \\
+\hline
+{\em ange} & Not used. \\
+\hline
+{\em zoome} & Zoom factor of grid. \\
+\hline
+{\em gride} & The grid's scale. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Please do not use this function. It is only public because the build editor needs it. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!draw2dscreen@{draw2dscreen}}
+\index{draw2dscreen@{draw2dscreen}!engine.h@{engine.\-h}}
+\subsubsection[{draw2dscreen}]{\setlength{\rightskip}{0pt plus 5cm}void draw2dscreen (
+\begin{DoxyParamCaption}
+\item[{long}]{posxe, }
+\item[{long}]{posye, }
+\item[{short}]{ange, }
+\item[{long}]{zoome, }
+\item[{short}]{gride}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ad169765941743f280a9b4e506ceddb54}
+
+
+Draw the 2\-D screen. 
+
+Thus function is used by build to draw the 2d screen. \par
+ See draw2dgrid for explanation. \begin{DoxyRemark}{Remarks}
+Please do not use this function. It is only public because the build editor needs it. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!drawline256@{drawline256}}
+\index{drawline256@{drawline256}!engine.h@{engine.\-h}}
+\subsubsection[{drawline256}]{\setlength{\rightskip}{0pt plus 5cm}void drawline256 (
+\begin{DoxyParamCaption}
+\item[{long}]{x1, }
+\item[{long}]{y1, }
+\item[{long}]{x2, }
+\item[{long}]{y2, }
+\item[{unsigned char}]{col}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab1b6b9ded6e62834041f48f3ac7e50cc}
+
+
+Draw a line. 
+
+This function draws a colored, solid line. 
+\begin{DoxyParams}{Parameters}
+{\em x1} & X coordinate of starting point. \\
+\hline
+{\em y1} & Y coordinate of starting point. \\
+\hline
+{\em x2} & X coordinate of ending point. \\
+\hline
+{\em y2} & Y coordinate of ending point. \\
+\hline
+{\em col} & Color to use. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!drawmapview@{drawmapview}}
+\index{drawmapview@{drawmapview}!engine.h@{engine.\-h}}
+\subsubsection[{drawmapview}]{\setlength{\rightskip}{0pt plus 5cm}void drawmapview (
+\begin{DoxyParamCaption}
+\item[{long}]{dax, }
+\item[{long}]{day, }
+\item[{long}]{zoome, }
+\item[{short}]{ang}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a4bc3511367cb61dcc2405c9312bb3b4f}
+
+
+Draw the overhead textured map view. 
+
+This function is used to draw the overhead textured map view. 
+\begin{DoxyParams}{Parameters}
+{\em dax} & The x coordinate to center on the map. \\
+\hline
+{\em day} & The y coordinate to center on the map. \\
+\hline
+{\em zoome} & The zoom to apply to the map. \\
+\hline
+{\em ang} & The angle to rotate the map by. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!drawmasks@{drawmasks}}
+\index{drawmasks@{drawmasks}!engine.h@{engine.\-h}}
+\subsubsection[{drawmasks}]{\setlength{\rightskip}{0pt plus 5cm}void drawmasks (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aa62c85ac7edf6b08e9b586f7b55ba3ec}
+
+
+Draw the sprites and maskwalls to the current drawing page. 
+
+This function will draw the visible sprites and masked walls to the current drawing page. \begin{DoxyRemark}{Remarks}
+Ken's Notes on this function\-: \par
+ This function draws all the sprites and masked walls to the current drawing page which is not yet shown. The reason I have the drawing split up into these 2 routines is so you can animate just the sprites that are about to be drawn instead of having to animate all the sprites on the whole board. Drawrooms() prepares these variables\-: spritex[], spritey[], spritepicnum[], thesprite[], and spritesortcnt. Spritesortcnt is the number of sprites about to be drawn to the page. To change the sprite's picnum, simply modify the spritepicnum array If you want to change other parts of the sprite structure, then you can use the thesprite array to get an index to the actual sprite number. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!drawrooms@{drawrooms}}
+\index{drawrooms@{drawrooms}!engine.h@{engine.\-h}}
+\subsubsection[{drawrooms}]{\setlength{\rightskip}{0pt plus 5cm}void drawrooms (
+\begin{DoxyParamCaption}
+\item[{long}]{daposx, }
+\item[{long}]{daposy, }
+\item[{long}]{daposz, }
+\item[{short}]{daang, }
+\item[{long}]{dahoriz, }
+\item[{short}]{dacursectnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a66678bd73cef8c99167f81a014eaaebf}
+
+
+Draw the 3\-D screen to the current drawing page. 
+
+This function draws the current 3\-D screen to the current drawing page. Remember to call {\itshape \doxyref{nextpage()}{p.}{engine_8h_a61cc16c822b16491315e8f46a7991958}} to actually show the page on the screen! 
+\begin{DoxyParams}{Parameters}
+{\em daposx} & X position of the camera. \\
+\hline
+{\em daposy} & Y position of the camera. \\
+\hline
+{\em daposz} & Z position of the camera. \\
+\hline
+{\em daang} & Viewing angle of the camera. \\
+\hline
+{\em dahoriz} & ??? fixme \\
+\hline
+{\em dacursectnum} & Sector camera is currently in. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!drawtilescreen@{drawtilescreen}}
+\index{drawtilescreen@{drawtilescreen}!engine.h@{engine.\-h}}
+\subsubsection[{drawtilescreen}]{\setlength{\rightskip}{0pt plus 5cm}int drawtilescreen (
+\begin{DoxyParamCaption}
+\item[{long}]{pictopleft, }
+\item[{long}]{picbox}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ae85f64aadbd4edda5616d23675406b22}
+
+
+Draw the tile screen. 
+
+This function draws the tile chooser in Build. (what you get when you press \char`\"{}v\char`\"{}.) 
+\begin{DoxyParams}{Parameters}
+{\em pictopleft} & The first tile to show. \\
+\hline
+{\em picbox} & The tile to highlight. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!getangle@{getangle}}
+\index{getangle@{getangle}!engine.h@{engine.\-h}}
+\subsubsection[{getangle}]{\setlength{\rightskip}{0pt plus 5cm}int getangle (
+\begin{DoxyParamCaption}
+\item[{long}]{xvect, }
+\item[{long}]{yvect}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a07e575f9719e3c30ee3d878ed43f352b}
+
+
+Gets the angle of a vector. 
+
+This function will return the angle closest to the vector you specify. \par
+ There are 2048 possible angles, starting from the right (3 o'clock), going clockwise. 
+\begin{DoxyParams}{Parameters}
+{\em xvect} & The x component. \\
+\hline
+{\em yvect} & The y component. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!getceilzofslope@{getceilzofslope}}
+\index{getceilzofslope@{getceilzofslope}!engine.h@{engine.\-h}}
+\subsubsection[{getceilzofslope}]{\setlength{\rightskip}{0pt plus 5cm}int getceilzofslope (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{long}]{dax, }
+\item[{long}]{day}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a882f170f9f4f090955e4d0ecdf3cf588}
+
+
+Get the ceiling z value for a point in a sector. 
+
+This function returns the Z value of a ceiling at a point in the sector. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to look in. \\
+\hline
+{\em dax} & The x coordinate to look in. \\
+\hline
+{\em day} & The y coordinate to look in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The z coordinate at that point. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!getflorzofslope@{getflorzofslope}}
+\index{getflorzofslope@{getflorzofslope}!engine.h@{engine.\-h}}
+\subsubsection[{getflorzofslope}]{\setlength{\rightskip}{0pt plus 5cm}int getflorzofslope (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{long}]{dax, }
+\item[{long}]{day}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a455e6301e09bae328d82ffc8f077f3b7}
+
+
+Get the floor z value for a point in a sector. 
+
+This function returns the Z value of a floor at a point in the sector. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to look in. \\
+\hline
+{\em dax} & The x coordinate to look in. \\
+\hline
+{\em day} & The y coordinate to look in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The z coordinate. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!getmousevalues@{getmousevalues}}
+\index{getmousevalues@{getmousevalues}!engine.h@{engine.\-h}}
+\subsubsection[{getmousevalues}]{\setlength{\rightskip}{0pt plus 5cm}void getmousevalues (
+\begin{DoxyParamCaption}
+\item[{short $\ast$}]{mousx, }
+\item[{short $\ast$}]{mousy, }
+\item[{short $\ast$}]{bstatus}
+\end{DoxyParamCaption}
+)}\label{engine_8h_abb8ee8f622b3ab411f131c372271e17e}
+
+
+Get the current mouse location and button state. 
+
+This function will store the current mouse position and the state of the mouse buttons in the pointers you give it. 
+\begin{DoxyParams}{Parameters}
+{\em mousx} & A pointer to write the X position of the mouse to. \\
+\hline
+{\em mousy} & A pointer to write the Y position of the mouse to. \\
+\hline
+{\em bstatus} & A pointer to write the current state of the mouse buttons to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+{\itshape bstatus} is a bitmask of the mouse states\-: \begin{DoxyItemize}
+\item 1 -- Left button is down. \item 2 -- Right button is down. \item 4 -- Middle button is down. \end{DoxyItemize}
+
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!getpixel@{getpixel}}
+\index{getpixel@{getpixel}!engine.h@{engine.\-h}}
+\subsubsection[{getpixel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char getpixel (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a668be37c5f3c1171824e407201271d5e}
+
+
+Returns the color of a pixel on screen. 
+
+This function will find the color of a pixel in any graphics mode. \par
+ N\-O\-T\-E\-: This function is not designed to be fast! -- Use it in moderation. 
+\begin{DoxyParams}{Parameters}
+{\em x} & The x cordinate of the pixel. \\
+\hline
+{\em y} & The y coordinate of the pixel. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The color of the pixel. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!getzrange@{getzrange}}
+\index{getzrange@{getzrange}!engine.h@{engine.\-h}}
+\subsubsection[{getzrange}]{\setlength{\rightskip}{0pt plus 5cm}void getzrange (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{long}]{z, }
+\item[{short}]{sectnum, }
+\item[{long $\ast$}]{ceilz, }
+\item[{long $\ast$}]{ceilhit, }
+\item[{long $\ast$}]{florz, }
+\item[{long $\ast$}]{florhit, }
+\item[{long}]{walldist, }
+\item[{unsigned long}]{cliptype}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a32c92aa1ef6efa66fc40722d864caf2d}
+
+
+Find the highest and lowest z coordinates your clipping box can get to. 
+
+This function finds the highest and lowest z coordinates your clipping box can get to. 
+\begin{DoxyParams}{Parameters}
+{\em x} & X coordinate of location. \\
+\hline
+{\em y} & Y coordinate of location. \\
+\hline
+{\em z} & Z coordinate of location. \\
+\hline
+{\em sectnum} & Current sector. \\
+\hline
+{\em $\ast$ceilz} & Pointer to store Z extent of ceiling. \\
+\hline
+{\em $\ast$florz} & Pointer to store Z extent of floor. \\
+\hline
+{\em $\ast$ceilhit} & First object hit in the up direction. \\
+\hline
+{\em $\ast$florhit} & First object hit in the down direction. \\
+\hline
+{\em walldist} & Size of your clipping box. \\
+\hline
+{\em cliptype} & See description below. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes on this function\-: \par
+ {\itshape walldist} is suggested to be 128. \par
+ {\itshape ceilhit} and {\itshape florhit} will be the following after the function call\-: \par
+ 16384+sector (sector first touched) or \par
+ 49152+spritenum (sprite first touched) 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!getzsofslope@{getzsofslope}}
+\index{getzsofslope@{getzsofslope}!engine.h@{engine.\-h}}
+\subsubsection[{getzsofslope}]{\setlength{\rightskip}{0pt plus 5cm}void getzsofslope (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{long}]{dax, }
+\item[{long}]{day, }
+\item[{long $\ast$}]{ceilz, }
+\item[{long $\ast$}]{florz}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a712cb52e48cb161defe931ca873c2a9d}
+
+
+Get the floor and ceiling z values for a point. 
+
+This function finds the Z value of a floor and ceiling, and stores the values in two pointers. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to look in. \\
+\hline
+{\em dax} & The x coordinate to look in. \\
+\hline
+{\em day} & The y coordinate to look in. \\
+\hline
+{\em $\ast$ceilz} & A pointer to write the ceiling z value to. \\
+\hline
+{\em $\ast$florz} & A pointer to write the floor z value to. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!hitscan@{hitscan}}
+\index{hitscan@{hitscan}!engine.h@{engine.\-h}}
+\subsubsection[{hitscan}]{\setlength{\rightskip}{0pt plus 5cm}int hitscan (
+\begin{DoxyParamCaption}
+\item[{long}]{xs, }
+\item[{long}]{ys, }
+\item[{long}]{zs, }
+\item[{short}]{sectnum, }
+\item[{long}]{vx, }
+\item[{long}]{vy, }
+\item[{long}]{vz, }
+\item[{short $\ast$}]{hitsect, }
+\item[{short $\ast$}]{hitwall, }
+\item[{short $\ast$}]{hitsprite, }
+\item[{long $\ast$}]{hitx, }
+\item[{long $\ast$}]{hity, }
+\item[{long $\ast$}]{hitz, }
+\item[{unsigned long}]{cliptype}
+\end{DoxyParamCaption}
+)}\label{engine_8h_abbddec0c52f6ce32730c69ce01723641}
+
+
+Project a ray and report what it hit. 
+
+This function will project a ray in the direction specified by a 3\-D vector and report where and what the ray hit. 
+\begin{DoxyParams}{Parameters}
+{\em xs} & Starting X position. \\
+\hline
+{\em ys} & Starting Y position. \\
+\hline
+{\em zs} & Starting Z position. \\
+\hline
+{\em sectnum} & Starting sector. \\
+\hline
+{\em vx} & X component of 3\-D vector. \\
+\hline
+{\em vy} & Y component of 3\-D vector. \\
+\hline
+{\em vz} & Z component of 3\-D vector. \\
+\hline
+{\em $\ast$hitsect} & The sector that the intersection occured in. \\
+\hline
+{\em $\ast$hitwall} & The wall that got hit. \\
+\hline
+{\em $\ast$hitsprite} & The sprite that got hit. \\
+\hline
+{\em $\ast$hitx} & The X coordinate of the point that the intersection occured. \\
+\hline
+{\em $\ast$hity} & The Y coordinate of the point that the intersection occured. \\
+\hline
+{\em $\ast$hitz} & The Z coordinate of the point that the intersection occured. \\
+\hline
+{\em cliptype} & See description below. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes on this function\-: \par
+ H\-O\-W T\-O D\-E\-T\-E\-R\-M\-I\-N\-E W\-H\-A\-T W\-A\-S H\-I\-T\-:\par
+ If the ray hits a sprite, then \begin{DoxyItemize}
+\item hitsprite = thespritenumber. \item hitwall = -\/1. \end{DoxyItemize}
+
+
+If the ray hits a wall, then \begin{DoxyItemize}
+\item hitsprite = -\/1 \item hitwall = thewallnumber \end{DoxyItemize}
+
+
+If the ray hits the ceiling of a sector, then \begin{DoxyItemize}
+\item hitsprite = -\/1 \item hitwall = -\/1 \item vectorz $<$ 0 \item (If vectorz $<$ 0 then you're shooting upward which means that you couldn't have hit a floor) \end{DoxyItemize}
+
+
+If the ray hits the floor of a sector, then \begin{DoxyItemize}
+\item hitsprite = -\/1 \item hitwall = -\/1 \item vectorz $>$ 0 \item (If vectorz $>$ 0 then you're shooting downard which means that you couldn't have hit a ceiling) \end{DoxyItemize}
+
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!initengine@{initengine}}
+\index{initengine@{initengine}!engine.h@{engine.\-h}}
+\subsubsection[{initengine}]{\setlength{\rightskip}{0pt plus 5cm}void initengine (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ad954c198a08c9098326b4fc8aa07c305}
+
+
+Initialize the Build Engine. 
+
+This function initializes many variables for the Build Engine. You should call this function before using any other Build functions. \index{engine.\-h@{engine.\-h}!initspritelists@{initspritelists}}
+\index{initspritelists@{initspritelists}!engine.h@{engine.\-h}}
+\subsubsection[{initspritelists}]{\setlength{\rightskip}{0pt plus 5cm}void initspritelists (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a774492fd0fa1b8d8dd1e0fa6c897c561}
+
+
+Set up the sprite lists. 
+
+This function will initialize the doubly-\/linked sprite sector and sprite status lists. \index{engine.\-h@{engine.\-h}!insertsprite@{insertsprite}}
+\index{insertsprite@{insertsprite}!engine.h@{engine.\-h}}
+\subsubsection[{insertsprite}]{\setlength{\rightskip}{0pt plus 5cm}int insertsprite (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{short}]{statnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aeb692da127c5b7b796a5f7429ea5c531}
+
+
+Insert a sprite into a sector. 
+
+This function is used to insert a sprite into a sector. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector number to place the sprite into. \\
+\hline
+{\em statnum} & The sprite's status. (cstat) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number assigned to the new sprite. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!inside@{inside}}
+\index{inside@{inside}!engine.h@{engine.\-h}}
+\subsubsection[{inside}]{\setlength{\rightskip}{0pt plus 5cm}int inside (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{short}]{sectnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_af77e86dcba399c45472c7f7dbd786ebf}
+
+
+Tests to see if a 2d point is in a sector. 
+
+This function will check if a 2d point is inside a sector. 
+\begin{DoxyParams}{Parameters}
+{\em x} & X coordinate of point. \\
+\hline
+{\em y} & Y coordinate of point. \\
+\hline
+{\em sectnum} & The sector to test against. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!krand@{krand}}
+\index{krand@{krand}!engine.h@{engine.\-h}}
+\subsubsection[{krand}]{\setlength{\rightskip}{0pt plus 5cm}int krand (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a3658a285bd76153c2663cb71bcc1bd47}
+
+
+Returns a random number. 
+
+This function returns a pseudorandom number in the range 0-\/65535. \begin{DoxyReturn}{Returns}
+A random number. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!ksqrt@{ksqrt}}
+\index{ksqrt@{ksqrt}!engine.h@{engine.\-h}}
+\subsubsection[{ksqrt}]{\setlength{\rightskip}{0pt plus 5cm}int ksqrt (
+\begin{DoxyParamCaption}
+\item[{long}]{num}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a743df2040a63c440c0a5ca7723af132d}
+
+
+Integer Square Root Function. 
+
+This function will return an integer approximating the square root of a number. 
+\begin{DoxyParams}{Parameters}
+{\em num} & The number to work on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The square root of {\itshape num}. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!lastwall@{lastwall}}
+\index{lastwall@{lastwall}!engine.h@{engine.\-h}}
+\subsubsection[{lastwall}]{\setlength{\rightskip}{0pt plus 5cm}int lastwall (
+\begin{DoxyParamCaption}
+\item[{short}]{point}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a627b4fca81293cb2ef80402b47269413}
+
+
+Find the wall to the left of another wall. 
+
+Use this function as a reverse function of wall[].point2. 
+\begin{DoxyParams}{Parameters}
+{\em point} & The wall to search with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The wall to the left of {\itshape point}. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!loadboard@{loadboard}}
+\index{loadboard@{loadboard}!engine.h@{engine.\-h}}
+\subsubsection[{loadboard}]{\setlength{\rightskip}{0pt plus 5cm}int loadboard (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{long $\ast$}]{daposx, }
+\item[{long $\ast$}]{daposy, }
+\item[{long $\ast$}]{daposz, }
+\item[{short $\ast$}]{daang, }
+\item[{short $\ast$}]{dacursectnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a67fd5aae595f6703b5b1b96f59192f8b}
+
+
+Loads a map from disk. 
+
+This function loads a map from disk and stores the starting location in the pointers you pass. If no extention is given to {\itshape filename}, .M\-A\-P is assumed. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The filename to load. \\
+\hline
+{\em $\ast$daposx} & A pointer for the starting X coordinate. \\
+\hline
+{\em $\ast$daposy} & A pointer for the starting Y coordinate. \\
+\hline
+{\em $\ast$daposz} & A pointer for the starting Z coordinate. \\
+\hline
+{\em $\ast$daang} & A pointer for the starting angle. \\
+\hline
+{\em $\ast$dacursectnum} & A pointer for the starting sector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if the map is not found. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!loadpics@{loadpics}}
+\index{loadpics@{loadpics}!engine.h@{engine.\-h}}
+\subsubsection[{loadpics}]{\setlength{\rightskip}{0pt plus 5cm}int loadpics (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{engine_8h_acad7789d797049e17ec0eb1f54a1e41b}
+
+
+Loads an artwork file into the engine. 
+
+This function is used to load an artwork file into memory so the engine knows where to find the tiles referenced by the artwork file. If no extention is given to {\itshape filename}, .A\-R\-T is assumed. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$filename} & The name of the artwork file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+-\/1 if the file was not found. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!loadtile@{loadtile}}
+\index{loadtile@{loadtile}!engine.h@{engine.\-h}}
+\subsubsection[{loadtile}]{\setlength{\rightskip}{0pt plus 5cm}void loadtile (
+\begin{DoxyParamCaption}
+\item[{short}]{tilenume}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a49a03deb098822ec5542b9fd4b9906c9}
+
+
+Loads a tile into memory. 
+
+This function will ensure {\itshape tilenume} is in memory. 
+\begin{DoxyParams}{Parameters}
+{\em tilenume} & The tile to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on this function\-: \par
+ A tile is not in the cache if (waloff[tilenum] == 0) 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!loopnumofsector@{loopnumofsector}}
+\index{loopnumofsector@{loopnumofsector}!engine.h@{engine.\-h}}
+\subsubsection[{loopnumofsector}]{\setlength{\rightskip}{0pt plus 5cm}int loopnumofsector (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{short}]{wallnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aef4591b0bc830ea3434eab130381a8f8}
+
+
+Find number of walls in sector, up to a known wall. 
+
+This function will find the number of walls in a sector, up to the specified wall. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to work on. \\
+\hline
+{\em wallnum} & The wall to stop on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of walls in {\itshape sectnum} before {\itshape wallnum}, or -\/1 if {\itshape wallnum} does not occur in {\itshape sectnum}. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!makepalookup@{makepalookup}}
+\index{makepalookup@{makepalookup}!engine.h@{engine.\-h}}
+\subsubsection[{makepalookup}]{\setlength{\rightskip}{0pt plus 5cm}void makepalookup (
+\begin{DoxyParamCaption}
+\item[{long}]{palnum, }
+\item[{char $\ast$}]{remapbuf, }
+\item[{signed char}]{r, }
+\item[{signed char}]{g, }
+\item[{signed char}]{b, }
+\item[{char}]{dastat}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a65e3e862cf45cf556bc982d0af4fcf1a}
+
+
+Make a lookup table for remapping. 
+
+Ken's description of this function\-: This function allows different shirt colors for sprites. First prepare {\itshape remapbuf}, which is a 256 byte buffer of chars with the colors to remap. \par
+ Palnum can be anywhere from 1-\/15. \par
+ Since 0 is where the normal palette is stored, it is a bad idea to call this function with palnum=0. \par
+ In \doxyref{B\-U\-I\-L\-D.\-H}{p.}{build_8h_source} notice I added a new variable, spritepal[M\-A\-X\-S\-P\-R\-I\-T\-E\-S]. \par
+ Usually the value of this is 0 for the default palette. \par
+ But if you change it to the palnum in the code between \doxyref{drawrooms()}{p.}{engine_8h_a66678bd73cef8c99167f81a014eaaebf} and drawmasks then the sprite will be drawn with that remapped palette. \par
+ The last 3 parameters are the color that the palette fades to as you get further away. \par
+ This color is normally black (0,0,0). \par
+ White would be (63,63,63). \par
+ if ((dastat\&1) == 0) then makepalookup will allocate \& deallocate the memory block for use but will not waste the time creating a palookup table (it assumes you will create one yourself). \index{engine.\-h@{engine.\-h}!neartag@{neartag}}
+\index{neartag@{neartag}!engine.h@{engine.\-h}}
+\subsubsection[{neartag}]{\setlength{\rightskip}{0pt plus 5cm}int neartag (
+\begin{DoxyParamCaption}
+\item[{long}]{xs, }
+\item[{long}]{ys, }
+\item[{long}]{zs, }
+\item[{short}]{sectnum, }
+\item[{short}]{ange, }
+\item[{short $\ast$}]{neartagsector, }
+\item[{short $\ast$}]{neartagwall, }
+\item[{short $\ast$}]{neartagsprite, }
+\item[{long $\ast$}]{neartaghitdist, }
+\item[{long}]{neartagrange, }
+\item[{char}]{tagsearch}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a34288018de286e9930104effe5e02d2c}
+
+
+Find the closest objects with tags the player is pointing at. 
+
+This function will get the nearest tagged objects. It is useful for door and switch activation code, among other things. 
+\begin{DoxyParams}{Parameters}
+{\em xs} & X coordinate to search from. \\
+\hline
+{\em ys} & Y coordinate to search from. \\
+\hline
+{\em zs} & Z coordinate to search from. \\
+\hline
+{\em sectnum} & Sector number to search from. \\
+\hline
+{\em ange} & Angle to search from. \\
+\hline
+{\em $\ast$neartagsector} & The nearest tagged sector. \\
+\hline
+{\em $\ast$neartagwall} & The nearest tagged wall. \\
+\hline
+{\em $\ast$neartagsprite} & The nearest tagged sprite. \\
+\hline
+{\em $\ast$neartaghitdist} & Distance to the found object. \\
+\hline
+{\em neartagrange} & Maximum distance to search. \\
+\hline
+{\em tagsearch} & What to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes on this function\-: \par
+ For {\itshape tagsearch\-:} \begin{DoxyItemize}
+\item 1 = search lotag only. \item 2 = search hitag only. \item 3 = search both lotag and hitag. \end{DoxyItemize}
+
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!nextpage@{nextpage}}
+\index{nextpage@{nextpage}!engine.h@{engine.\-h}}
+\subsubsection[{nextpage}]{\setlength{\rightskip}{0pt plus 5cm}void nextpage (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a61cc16c822b16491315e8f46a7991958}
+
+
+Flip to next drawing page. 
+
+This function flips to the next drawing page. After a page is prepared, use this function to show the it on the screen and set up the next one for drawing. \index{engine.\-h@{engine.\-h}!nextsectorneighborz@{nextsectorneighborz}}
+\index{nextsectorneighborz@{nextsectorneighborz}!engine.h@{engine.\-h}}
+\subsubsection[{nextsectorneighborz}]{\setlength{\rightskip}{0pt plus 5cm}int nextsectorneighborz (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{long}]{thez, }
+\item[{short}]{topbottom, }
+\item[{short}]{direction}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a7e0a9186f78f84cd592907978b2ea79c}
+
+
+Find the next closest ceiling or floor in surrounding sectors. 
+
+This function will find the next closest ceiling or floor in the sectors surrounding the given sector. It is useful for calculating where elevators should stop. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to test with \\
+\hline
+{\em thez} & The z coordinate to start the search from. \\
+\hline
+{\em topbottom} & Search ceilings/floors only. \\
+\hline
+{\em direction} & Search up/down. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes\-: \par
+ {\itshape topbottom\-:} pass -\/1 to search ceilings, 1 to search floors. \par
+ {\itshape direction\-:} pass -\/1 to search upwards, 1 to search downwards. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!plotpixel@{plotpixel}}
+\index{plotpixel@{plotpixel}!engine.h@{engine.\-h}}
+\subsubsection[{plotpixel}]{\setlength{\rightskip}{0pt plus 5cm}void plotpixel (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{char}]{col}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a2e5e1daf06029bc7eab6de9a8859aa36}
+
+
+Plots a pixel to the screen. 
+
+This function can plot a pixel to the screen in any graphics mode. \par
+ N\-O\-T\-E\-: This function is not designed to be fast! Use it in moderation. 
+\begin{DoxyParams}{Parameters}
+{\em x} & The x coordinate of the pixel. \\
+\hline
+{\em y} & The y coordinate of the pixel. \\
+\hline
+{\em col} & The color of the pixel. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!printext256@{printext256}}
+\index{printext256@{printext256}!engine.h@{engine.\-h}}
+\subsubsection[{printext256}]{\setlength{\rightskip}{0pt plus 5cm}void printext256 (
+\begin{DoxyParamCaption}
+\item[{long}]{xpos, }
+\item[{long}]{ypos, }
+\item[{short}]{col, }
+\item[{short}]{backcol, }
+\item[{char}]{name[82], }
+\item[{char}]{fontsize}
+\end{DoxyParamCaption}
+)}\label{engine_8h_afe992ccc867011bddf65db06d3d6a1b0}
+
+
+Draws a text message to the screen. 
+
+This function will draw a message to the screen using one of the built in fonts. 
+\begin{DoxyParams}{Parameters}
+{\em xpos} & X position of text. \\
+\hline
+{\em ypos} & Y position of text. \\
+\hline
+{\em col} & Color of text. \\
+\hline
+{\em backcol} & Background color of text, or -\/1 for transparency. \\
+\hline
+{\em name} & The text to draw. \\
+\hline
+{\em fontsize} & The font size. Legal values\-: 0 -- 8x8 font. 1 -- 4x6 font. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!printext256\-\_\-noupdate@{printext256\-\_\-noupdate}}
+\index{printext256\-\_\-noupdate@{printext256\-\_\-noupdate}!engine.h@{engine.\-h}}
+\subsubsection[{printext256\-\_\-noupdate}]{\setlength{\rightskip}{0pt plus 5cm}void printext256\-\_\-noupdate (
+\begin{DoxyParamCaption}
+\item[{long}]{xpos, }
+\item[{long}]{ypos, }
+\item[{short}]{col, }
+\item[{short}]{backcol, }
+\item[{char}]{name[82], }
+\item[{char}]{fontsize}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ae865af00b25ea38c5b5dd78ebe9d5a8b}
+
+
+Draws a text message to the screen without refreshing. 
+
+This function will draw a message to the screen using one of the built in fonts. It will also avoid refreshing the screen. See Ryan's notes below. 
+\begin{DoxyParams}{Parameters}
+{\em xpos} & X position of text. \\
+\hline
+{\em ypos} & Y position of text. \\
+\hline
+{\em col} & Color of text. \\
+\hline
+{\em backcol} & Background color of text, or -\/1 for transparency. \\
+\hline
+{\em name} & The text to draw. \\
+\hline
+{\em fontsize} & The font size. Legal values\-: 0 -- 8x8 font. 1 -- 4x6 font. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ryan's notes on this function\-: \par
+ This is ryan's change. S\-D\-L requires me to call S\-D\-L\-\_\-\-Update\-Rect() to force vid updates without a S\-D\-L\-\_\-\-Flip() call, but there's no such thing in the D\-O\-S version of this program, so text won't show up sometimes without my update call in Linux. \par
+ However, to get a nice shadow effect on some text, Ken draws a string at an offset and darker, and then on top of it draws the actual string. \par
+ Two S\-D\-L\-\_\-\-Update\-Rect() calls in over top of each other cause flicker, so I have this function here so the shadow can be drawn with \-\_\-noupdate, and the actual string is draw with an update. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!pushmove@{pushmove}}
+\index{pushmove@{pushmove}!engine.h@{engine.\-h}}
+\subsubsection[{pushmove}]{\setlength{\rightskip}{0pt plus 5cm}int pushmove (
+\begin{DoxyParamCaption}
+\item[{long $\ast$}]{x, }
+\item[{long $\ast$}]{y, }
+\item[{long $\ast$}]{z, }
+\item[{short $\ast$}]{sectnum, }
+\item[{long}]{walldist, }
+\item[{long}]{ceildist, }
+\item[{long}]{flordist, }
+\item[{unsigned long}]{cliptype}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a329de23de31be916421ef26da38cdb68}
+
+
+Try to keep object away from wall. 
+
+This function checks if an object is too close to a wall. If it is, it attempts to push it away. If it tries to push 256 times, and the object is still too close, it returns -\/1. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$x} & Object's X coordinate. \\
+\hline
+{\em $\ast$y} & Object's Y coordinate. \\
+\hline
+{\em $\ast$z} & Object's Z coordinate. \\
+\hline
+{\em $\ast$sectnum} & Object's sector. \\
+\hline
+{\em walldist} & Distance to avoid walls by. \\
+\hline
+{\em ceildist} & Distance to avoid ceilings by. \\
+\hline
+{\em flordist} & Distane to avoid floors by. \\
+\hline
+{\em cliptype} & See below. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes on this function\-: \par
+ Cliptype is a mask that tells whether the object should be clipped to or not. The lower 16 bits are anded with wall[].cstat and the higher 16 bits are anded with sprite[].cstat. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!qloadkvx@{qloadkvx}}
+\index{qloadkvx@{qloadkvx}!engine.h@{engine.\-h}}
+\subsubsection[{qloadkvx}]{\setlength{\rightskip}{0pt plus 5cm}void qloadkvx (
+\begin{DoxyParamCaption}
+\item[{long}]{voxindex, }
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ae38a2d61789ea7c324b759bd061e0482}
+
+
+Load a voxel. 
+
+This function will load a voxel that can be used to replace a sprite. \par
+ See notes below. 
+\begin{DoxyParams}{Parameters}
+{\em voxindex} & The voxel number to use. \\
+\hline
+{\em $\ast$filename} & The voxel file to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on Using Voxels\-: \par
+ To actually display the voxel, you need to set the (sprite[?].cstat\&48) to equal 48 like this\-: \par
+ sprite[?].cstat $|$= 48; \par
+ I have no special collision code for voxels. They are simply treated as face sprites. \par
+ \par
+ You should set the sprite[?].picnum to equal the V\-O\-X\-E\-L index of the voxel that you passed to qloadkvx. If you don't do this you will see nothing. To handle this index remapping it is a good idea to make some array like this\-: \par
+ short picnumtovox[M\-A\-X\-T\-I\-L\-E\-S]; \par
+ and save the array in some file (or in the .G\-R\-P file) \par
+ Many other fields of the sprite structure also affect voxels, such as\-: ang, shade, pal, xrepeat, yrepeat. \par
+ \par
+ Note\-: To view voxels in the Build editor, you will need to do the same qloadkvx calls in your B\-S\-T\-U\-B.\-C. \par
+ And now a warning\-: Voxels tend to draw the fastest when they are tall and thin. \par
+ For example, a telephone pole would work just great. \par
+ They slow down very quickly as you add detail. \par
+ This is why you don't see any large voxels in S\-W and Blood. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!rotatepoint@{rotatepoint}}
+\index{rotatepoint@{rotatepoint}!engine.h@{engine.\-h}}
+\subsubsection[{rotatepoint}]{\setlength{\rightskip}{0pt plus 5cm}void rotatepoint (
+\begin{DoxyParamCaption}
+\item[{long}]{xpivot, }
+\item[{long}]{ypivot, }
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{short}]{daang, }
+\item[{long $\ast$}]{x2, }
+\item[{long $\ast$}]{y2}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a2509ece09b386579638af0b235fc469f}
+
+
+Rotate / translate a point. 
+
+This function is a very convenient and fast math helper function. Rotate points easily with this function without having to juggle your cosines and sines. 
+\begin{DoxyParams}{Parameters}
+{\em xpivot} & X coordinate of point to pivot about. \\
+\hline
+{\em ypivot} & Y coordinate of point to pivot about. \\
+\hline
+{\em x} & X coordinate of point to translate. \\
+\hline
+{\em y} & Y coordinate of point to translate. \\
+\hline
+{\em daang} & Angle to rotate (C\-W, relative) \\
+\hline
+{\em $\ast$x2} & X coordinate of the translated point. \\
+\hline
+{\em $\ast$y2} & Y coordinate of the translated point. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!rotatesprite@{rotatesprite}}
+\index{rotatesprite@{rotatesprite}!engine.h@{engine.\-h}}
+\subsubsection[{rotatesprite}]{\setlength{\rightskip}{0pt plus 5cm}void rotatesprite (
+\begin{DoxyParamCaption}
+\item[{long}]{sx, }
+\item[{long}]{sy, }
+\item[{long}]{z, }
+\item[{short}]{a, }
+\item[{short}]{picnum, }
+\item[{signed char}]{dashade, }
+\item[{char}]{dapalnum, }
+\item[{char}]{dastat, }
+\item[{long}]{cx1, }
+\item[{long}]{cy1, }
+\item[{long}]{cx2, }
+\item[{long}]{cy2}
+\end{DoxyParamCaption}
+)}\label{engine_8h_aa5b391d361340cd11c504aa20f7338b8}
+
+
+Rotate and draw a sprite on the screen. 
+
+This function will rotate and draw a sprite onto the screen. See notes for proper usage. 
+\begin{DoxyParams}{Parameters}
+{\em sx} & X center of sprite to draw. \\
+\hline
+{\em sy} & Y center of sprite to draw. \\
+\hline
+{\em z} & Zoom to draw with. \\
+\hline
+{\em a} & Angle to draw at. \\
+\hline
+{\em picnum} & The tile to draw. \\
+\hline
+{\em dashade} & The shade to draw with. \\
+\hline
+{\em dapalnum} & The palette to draw with. \\
+\hline
+{\em dastat} & Drawing options. \\
+\hline
+{\em cx1} & Upper left of screen clipping box X. \\
+\hline
+{\em cy1} & Upper left of screen clipping box Y. \\
+\hline
+{\em cx2} & Lower right of screen clipping box X. \\
+\hline
+{\em cy2} & Lower right of screen clipping box Y. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on this function. \begin{DoxyItemize}
+\item (sx, sy) is the center of the sprite to draw defined as screen coordinates shifted up by 16. \item (z) is the zoom. Normal zoom is 65536. Ex\-: 131072 is zoomed in 2\-X and 32768 is zoomed out 2\-X. \item (a) is the angle (0 is straight up) \item (picnum) is the tile number \item (dashade) is 0 normally but can be any standard shade up to 31 or 63. \item (dapalnum) can be from 0-\/255. \item if ((dastat\&1) == 0) -\/ no transluscence \item if ((dastat\&1) != 0) -\/ transluscence \item if ((dastat\&2) == 0) -\/ don't scale to setview's viewing window \item if ((dastat\&2) != 0) -\/ scale to setview's viewing window (windowx1,etc.) \item if ((dastat\&4) == 0) -\/ nuttin' special \item if ((dastat\&4) != 0) -\/ y-\/flip image \item if ((dastat\&8) == 0) -\/ clip to startumost/startdmost \item if ((dastat\&8) != 0) -\/ don't clip to startumost/startdmost \item if ((dastat\&16) == 0) -\/ use Editart center as point passed \item if ((dastat\&16) != 0) -\/ force point passed to be top-\/left corner \item if ((dastat\&32) == 0) -\/ nuttin' special \item if ((dastat\&32) != 0) -\/ use reverse transluscence \item if ((dastat\&64) == 0) -\/ masked drawing (check 255's) (slower) \item if ((dastat\&64) != 0) -\/ draw everything (don't check 255's) (faster) \item if ((dastat\&128) == 0) -\/ nuttin' special \item if ((dastat\&128) != 0) -\/ automatically draw to all video pages \end{DoxyItemize}
+
+
+Note\-: As a special case, if both ((dastat\&2) != 0) and ((dastat\&8) != 0) then rotatesprite will scale to the full screen (0,0,xdim-\/1,ydim-\/1) rather than setview's viewing window. (windowx1,windowy1,etc.) This case is useful for status bars, etc.\par
+ \par
+ Ex\-: rotatesprite(160\-L$<$$<$16,100\-L$<$$<$16,65536,totalclock$<$$<$4, D\-E\-M\-O\-S\-I\-G\-N,2,50\-L,50\-L,270\-L,150\-L); This example will draw the D\-E\-M\-O\-S\-I\-G\-N tile in the center of the screen and rotate about once per second. The sprite will only get drawn inside the rectangle from (50,50) to (270,150). 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!saveboard@{saveboard}}
+\index{saveboard@{saveboard}!engine.h@{engine.\-h}}
+\subsubsection[{saveboard}]{\setlength{\rightskip}{0pt plus 5cm}int saveboard (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{long $\ast$}]{daposx, }
+\item[{long $\ast$}]{daposy, }
+\item[{long $\ast$}]{daposz, }
+\item[{short $\ast$}]{daang, }
+\item[{short $\ast$}]{dacursectnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a299155d6e6b08616c20af110839d042b}
+
+
+Saves a map to disk. 
+
+This function dumps the working map to disk, using the pointers you pass as the starting location. If no extention is given to {\itshape filename}, .M\-A\-P is assumed. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The filename to save. \\
+\hline
+{\em $\ast$daposx} & A pointer containing the starting X coordinate. \\
+\hline
+{\em $\ast$daposy} & A pointer containing the starting Y coordinate. \\
+\hline
+{\em $\ast$daposz} & A pointer containing the starting Z coordinate. \\
+\hline
+{\em $\ast$daang} & A pointer containing the starting angle. \\
+\hline
+{\em $\ast$dacursectnum} & A pointer containing the starting sector. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!screencapture@{screencapture}}
+\index{screencapture@{screencapture}!engine.h@{engine.\-h}}
+\subsubsection[{screencapture}]{\setlength{\rightskip}{0pt plus 5cm}int screencapture (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{char}]{inverseit}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a2081a75c3d83fa1afd3a9d4f5a34dd7b}
+
+
+Take a screenshot. 
+
+This function will dump a picture of the current screen to a file. \par
+ Set {\itshape inverseit} to 1 if you want the colors inverted. 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$filename} & The filename to write to. \\
+\hline
+{\em inverseit} & Set to 1 if you want the colors inverted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Notes on {\itshape filename\-:} \par
+ If you use \char`\"{}captxxxx.\-pcx\char`\"{} as your filename, Build will automatically replace the x's with an automatically incrementing number, starting from 0000. 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!sectorofwall@{sectorofwall}}
+\index{sectorofwall@{sectorofwall}!engine.h@{engine.\-h}}
+\subsubsection[{sectorofwall}]{\setlength{\rightskip}{0pt plus 5cm}int sectorofwall (
+\begin{DoxyParamCaption}
+\item[{short}]{theline}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a8e7c1c9eadcd99712a5de5a5d2e99ef9}
+
+
+A fast routine to find the sector that owns a certain wall. 
+
+This function will find the sector that owns the wall {\itshape theline}. 
+\begin{DoxyParams}{Parameters}
+{\em theline} & The wall to lookup. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The sector the wall belongs to. 
+\end{DoxyReturn}
+\index{engine.\-h@{engine.\-h}!setaspect@{setaspect}}
+\index{setaspect@{setaspect}!engine.h@{engine.\-h}}
+\subsubsection[{setaspect}]{\setlength{\rightskip}{0pt plus 5cm}void setaspect (
+\begin{DoxyParamCaption}
+\item[{long}]{daxrange, }
+\item[{long}]{daaspect}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a4cb76c0d265f3cff77957d57c5a17a52}
+
+
+Set aspect ratio and viewing range angle. 
+
+This function sets the aspect ratio and viewing range angle of the engine. Used for weird video modes or special effects. 
+\begin{DoxyParams}{Parameters}
+{\em daxrange} & Sets the viewing range angle. \\
+\hline
+{\em daaspect} & Sets the aspect ratio. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on this function\-: \par
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\par
+ For a standard 90ø 320$\ast$200 screen, daxrange and daaspect are
+\begin{DoxyEnumerate}
+\item For square aspect ratio at 320$\ast$400, set daaspect to 131072. Since daxrange is actually zoom, you must modify the aspect ratio inversely if you only want to change the viewing angle. \par
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\par
+ [for daaspect] you pass the Y/\-X aspect ratio scaled up 16 bits, so 65536 would be normal. You don't need to call this if you don't want to. By default, in setview, I call setaspect with these parameters\-: setaspect(divscale16(ydim$\ast$320,xdim$\ast$200)); (also written as\-:) setaspect(((ydim$\ast$320)$<$$<$16)/(xdim$\ast$200)); Note that in 320$\ast$200 mode the value passed would be 65536 which is a 1\-:1 aspect ratio. \par
+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---\par
+ Since drawmapview is also affect by the aspect ratio, you will need to make sure drawoverheadmap is affected so the map modes match up. Please look at and copy my updated drawoverheadmap function into your G\-A\-M\-E.\-C if you use it. 
+\end{DoxyEnumerate}
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!setbrightness@{setbrightness}}
+\index{setbrightness@{setbrightness}!engine.h@{engine.\-h}}
+\subsubsection[{setbrightness}]{\setlength{\rightskip}{0pt plus 5cm}void setbrightness (
+\begin{DoxyParamCaption}
+\item[{char}]{dabrightness, }
+\item[{unsigned char $\ast$}]{dapal}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a28100b24cf0eb1b9de2169b20c7b9910}
+
+
+Adjust the gamma of a V\-G\-A palette. 
+
+This function will adjust the brightness of colors in {\itshape dapal}. 
+\begin{DoxyParams}{Parameters}
+{\em dabrightness} & The gamma level. Accepted range of 0-\/15, where 0 is the darkest and 15 is the lightest. \\
+\hline
+{\em $\ast$dapal} & A pointer to a standard 768 byte V\-G\-A palette. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!setfirstwall@{setfirstwall}}
+\index{setfirstwall@{setfirstwall}!engine.h@{engine.\-h}}
+\subsubsection[{setfirstwall}]{\setlength{\rightskip}{0pt plus 5cm}void setfirstwall (
+\begin{DoxyParamCaption}
+\item[{short}]{sectnum, }
+\item[{short}]{newfirstwall}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab688876e5e9d16bdc1a481d3926e2bdb}
+
+
+Sets the first wall of a sector. 
+
+This function sets the first wall of a sector. It can be used to change the hinge wall of a slope, among other things. 
+\begin{DoxyParams}{Parameters}
+{\em sectnum} & The sector to modify. \\
+\hline
+{\em newfirstwall} & The wall to set as the first wall. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!setgamemode@{setgamemode}}
+\index{setgamemode@{setgamemode}!engine.h@{engine.\-h}}
+\subsubsection[{setgamemode}]{\setlength{\rightskip}{0pt plus 5cm}int setgamemode (
+\begin{DoxyParamCaption}
+\item[{char}]{davidoption, }
+\item[{long}]{daxdim, }
+\item[{long}]{daydim}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a6eb2ccb6e1e062c239a47b6d8721bc7a}
+
+
+Set the video mode. 
+
+This function sets the video mode. If you change the mode in your program, you must call this again to reset the mode before using the build drawing functions. 
+\begin{DoxyParams}{Parameters}
+{\em davidoption} & The video modeset to use (0-\/6). Allowed options\-: \begin{DoxyItemize}
+\item {\ttfamily 0} -- \item {\ttfamily 1} -- V\-E\-S\-A mode. Any V\-E\-S\-A resolution is allowed. \item {\ttfamily 2} -- \item {\ttfamily 3} -- \item {\ttfamily 4} -- \item {\ttfamily 5} -- \item {\ttfamily 6} -- \end{DoxyItemize}
+\\
+\hline
+{\em daxdim} & The x resolution. (must be 320 if param 1 != 1.) \\
+\hline
+{\em daydim} & The y resolution. (must be 200 if param 1 != 1.) \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!setsprite@{setsprite}}
+\index{setsprite@{setsprite}!engine.h@{engine.\-h}}
+\subsubsection[{setsprite}]{\setlength{\rightskip}{0pt plus 5cm}int setsprite (
+\begin{DoxyParamCaption}
+\item[{short}]{spritenum, }
+\item[{long}]{newx, }
+\item[{long}]{newy, }
+\item[{long}]{newz}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab7654c62de8d43f45b037f11ffeb81ea}
+
+
+Puts a sprite somewhere, without checking for validity. 
+
+This function will move a sprite to anywhere on the map, regardless of whether the new place is valid. 
+\begin{DoxyParams}{Parameters}
+{\em spritenum} & The sprite to move. \\
+\hline
+{\em newx} & The X coordinate to move to. \\
+\hline
+{\em newy} & The Y coordinate to move to. \\
+\hline
+{\em newz} & The Z coordinate to move to. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!setview@{setview}}
+\index{setview@{setview}!engine.h@{engine.\-h}}
+\subsubsection[{setview}]{\setlength{\rightskip}{0pt plus 5cm}void setview (
+\begin{DoxyParamCaption}
+\item[{long}]{x1, }
+\item[{long}]{y1, }
+\item[{long}]{x2, }
+\item[{long}]{y2}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab41dd0063820e1bd32d102f33bf67a21}
+
+
+Sets the viewing window for 3\-D mode. 
+
+This function will cause the engine to draw the 3\-D view in a specified portion of the screen. 
+\begin{DoxyParams}{Parameters}
+{\em x1} & upper left X coordinate. \\
+\hline
+{\em y1} & upper left Y coordinate. \\
+\hline
+{\em x2} & lower right X coordinate. \\
+\hline
+{\em y2} & lower right Y coordinate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Example\-: For full screen 320$\ast$200, call like this\-: setview(0\-L,0\-L,319\-L,199\-L); 
+\end{DoxyRemark}
+\index{engine.\-h@{engine.\-h}!setviewback@{setviewback}}
+\index{setviewback@{setviewback}!engine.h@{engine.\-h}}
+\subsubsection[{setviewback}]{\setlength{\rightskip}{0pt plus 5cm}void setviewback (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a2b442fa69e55bc30f792543dc7ca6093}
+
+
+Shows the screen as it was previous to the last {\itshape setviewtotile}. 
+
+This function will show the screen as it was before the last call to {\itshape setviewtotile}. \index{engine.\-h@{engine.\-h}!setviewtotile@{setviewtotile}}
+\index{setviewtotile@{setviewtotile}!engine.h@{engine.\-h}}
+\subsubsection[{setviewtotile}]{\setlength{\rightskip}{0pt plus 5cm}void setviewtotile (
+\begin{DoxyParamCaption}
+\item[{short}]{tilenume, }
+\item[{long}]{xsiz, }
+\item[{long}]{ysiz}
+\end{DoxyParamCaption}
+)}\label{engine_8h_a08d01feafe12785e792c22826a7215c5}
+
+
+Shows a tile on screen, saving the previous view. 
+
+This function will show a tile on screen, saving the previous view. You can call this multiple times, and calling {\itshape setviewback} will go to the last view. If you keep calling {\itshape setback}, you will eventually get back to your original screen. All drawing starts in the top left corner. 
+\begin{DoxyParams}{Parameters}
+{\em tilenume} & Tile to show. \\
+\hline
+{\em xsiz} & X size to draw. \\
+\hline
+{\em ysiz} & Y size to draw. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!squarerotatetile@{squarerotatetile}}
+\index{squarerotatetile@{squarerotatetile}!engine.h@{engine.\-h}}
+\subsubsection[{squarerotatetile}]{\setlength{\rightskip}{0pt plus 5cm}void squarerotatetile (
+\begin{DoxyParamCaption}
+\item[{short}]{tilenume}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ae6765c423b9f3d4b715c344659a54b8f}
+
+
+Rotates a tile's image. 
+
+This function will rotate the graphic of a tile. It only works with square tiles. 
+\begin{DoxyParams}{Parameters}
+{\em tilenume} & The tile to perform the rotation on. \\
+\hline
+\end{DoxyParams}
+\index{engine.\-h@{engine.\-h}!uninitengine@{uninitengine}}
+\index{uninitengine@{uninitengine}!engine.h@{engine.\-h}}
+\subsubsection[{uninitengine}]{\setlength{\rightskip}{0pt plus 5cm}void uninitengine (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab4ae077d3245d2e5bd10c25361313ab6}
+
+
+Uninitialize the Build Engine. 
+
+This function frees the buffers used by the build engine. You should call this function once before you end your program. \index{engine.\-h@{engine.\-h}!updatesector@{updatesector}}
+\index{updatesector@{updatesector}!engine.h@{engine.\-h}}
+\subsubsection[{updatesector}]{\setlength{\rightskip}{0pt plus 5cm}void updatesector (
+\begin{DoxyParamCaption}
+\item[{long}]{x, }
+\item[{long}]{y, }
+\item[{short $\ast$}]{sectnum}
+\end{DoxyParamCaption}
+)}\label{engine_8h_ab4b80da4ff06d9f10b6cb9df33f585de}
+
+
+Update a sector pointer, given x and y values. 
+
+This function updates a pointer with the sector number occupied by an x and y value. 
+\begin{DoxyParams}{Parameters}
+{\em x} & The x coordinate to look up. \\
+\hline
+{\em y} & The y coordinate to look up. \\
+\hline
+{\em $\ast$sectnum} & A pointer to the variable you want to write the result into. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+Ken's Notes on this function\-: \par
+ Be careful when you use this function with sprites because remember that the sprite's sector number should not be modified directly. If you want to update a sprite's sector, I recommend using the setsprite function. 
+\end{DoxyRemark}

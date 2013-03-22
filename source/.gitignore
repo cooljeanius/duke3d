@@ -1,0 +1,5 @@
+stamp-h*
+libtool
+config.h
+Makefile
+Makefile.orig

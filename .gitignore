@@ -1,0 +1,8 @@
+*DS_Store*
+*.o
+*~
+*.cache
+*.status
+*.log
+*.a
+*.bak

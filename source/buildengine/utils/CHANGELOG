@@ -1,0 +1,31 @@
+// "Build Engine & Tools" Copyright (c) 1993-1997 Ken Silverman
+// Ken Silverman's official web site: "http://www.advsys.net/ken"
+// See the included license file "BUILDLIC.TXT" for license info.
+
+CHANGELOG for BUILD Utils Package
+
+08122000 - Initial release. kextract is the only utility that compiles cleanly,
+	kgroup and the map conversion utilities will work fine once they get
+	a findfirst/findnext implementation.  BUILD needs this too, so it may
+	get done soon.  I haven't touched the rest of the utils yet, since they
+	look like they'll need files from the BUILD source (pragmas.[ch], 
+	unix_compat.[ch], etc), and I really don't feel like screwing with this
+	anymore at the moment :)
+
+08222000 - kgroup now works... realized that kextract has some problems. kgroup
+	seems to have some too, but they are trivial, like files are sorted
+	backwards alphabetically in the group file and such.  As far as I can
+	tell, kgroup is stable.
+
+09042000 - Christian Zander contributed a new (GPL'd) kextract from scratch,
+	which I've named grpextract. It works under Linux, unlike kextract.
+	Added Ken's license text.
+
+09102000 - Editart now compiles (doesn't link yet).  Working on that, hopefully
+	it will link soon, but a lot of work will still need to be done.  Ken
+	used some VGA tricks that don't translate to SDL too well.  I don't
+	doubt that it will immediately segfault once it links, but I guess
+	we'll see.  Other stuff was done, mostly cleanups with the other utils,
+	such as *_compat.h instead of duplicating a ton of code in each util.
+	kextract still mystifies me, but that's not as important since we now
+	have grpextract. Map utils still waiting for opendir stuff.

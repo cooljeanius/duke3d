@@ -1,0 +1,10 @@
+// "Build Engine & Tools" Copyright (c) 1993-1997 Ken Silverman
+// Ken Silverman's official web site: "http://www.advsys.net/ken"
+// See the included license file "BUILDLIC.TXT" for license info.
+
+TODO for BUILD Utilities Package
+
+- Insert and clean up opendir stuff all around
+- Start on the utils that haven't been ported yet (obviously)
+
+Send patches to icculus@lokigames.com or dolson@raven-games.com
