@@ -6,3 +6,6 @@
 *.log
 *.a
 *.bak
+libtool
+config.h
+*/config.h

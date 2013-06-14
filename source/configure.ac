@@ -11,12 +11,13 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
 AC_USE_SYSTEM_EXTENSIONS
-AM_INIT_AUTOMAKE([foreign])
+#AM_INIT_AUTOMAKE([foreign])
 AM_MAINTAINER_MODE
 AX_CHECK_GNU_MAKE
-AC_LANG(C)
+AC_LANG([C])
 
 # Checks for programs.
+AC_USE_SYSTEM_EXTENSIONS
 AM_PROG_AR
 AM_PROG_AS
 AC_PROG_CC
@@ -64,9 +65,9 @@ AC_FUNC_MALLOC
 AC_FUNC_REALLOC
 AC_CHECK_FUNCS([atexit getcwd memmove memset mkdir pow putenv realpath socket strcasecmp strchr strerror strncasecmp strrchr strstr strtol])
 
-AC_CONFIG_FILES([Makefile Makefile.orig
-                 audiolib/Makefile audiolib/Makefile.orig
-                 buildengine/Makefile buildengine/Makefile.orig
-                 buildengine/tests/Makefile buildengine/tests/Makefile.orig
-                 buildengine/utils/Makefile buildengine/utils/Makefile.orig])
+AC_CONFIG_FILES([Makefile.orig
+                 audiolib/Makefile.orig
+                 buildengine/Makefile.orig
+                 buildengine/tests/Makefile.orig
+                 buildengine/utils/Makefile.orig])
 AC_OUTPUT
