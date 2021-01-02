@@ -9,3 +9,5 @@
 libtool
 config.h
 */config.h
+stamp-h*
+Makefile

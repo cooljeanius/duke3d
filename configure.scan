@@ -1,9 +1,9 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.70])
 AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
-AC_CONFIG_SRCDIR([extras/_animlib.h])
+AC_CONFIG_SRCDIR([extras/music.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -12,7 +12,7 @@ AC_PROG_CC
 # Checks for libraries.
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h limits.h malloc.h stdlib.h string.h])
+AC_CHECK_HEADERS([fcntl.h malloc.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
@@ -22,5 +22,6 @@ AC_FUNC_ALLOCA
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memmove memset sqrt strchr])
 
+AC_CONFIG_FILES([Makefile])
 AC_CONFIG_SUBDIRS([source])
 AC_OUTPUT

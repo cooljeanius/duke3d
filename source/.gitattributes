@@ -1,0 +1,7 @@
+build-aux/ar-lib linguist-vendored
+build-aux/compile linguist-vendored
+build-aux/config.guess linguist-vendored
+build-aux/config.sub linguist-vendored
+build-aux/install-sh linguist-vendored
+build-aux/ltmain.sh linguist-vendored
+build-aux/missing linguist-vendored
