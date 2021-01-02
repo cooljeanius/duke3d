@@ -4,19 +4,16 @@
 
 linux_ppc := false
 beos := false
-macosx := false
+macosx := true
 freebsd := false
 solaris := false
 shareware := false
 controls_menu := true
-#use_asm := true
 
 #-----------------------------------------------------------------------------#
 # If this makefile fails to detect Cygwin correctly, or you want to force
 #  the build process's behaviour, set it to "true" or "false" (w/o quotes).
 #-----------------------------------------------------------------------------#
-#cygwin := true
-#cygwin := false
 cygwin := autodetect
 
 # you only need to set these for Cygwin at the moment.
@@ -24,6 +21,7 @@ SDL_INC_DIR = /cygdrive/c/SDL/include
 SDL_LIB_DIR = /cygdrive/c/SDL/lib
 
 CC = @CC@
+CPPFLAGS = @CPPFLAGS@
 
 # need this for now.
 ifeq ($(strip $(beos)),true)
@@ -119,8 +117,8 @@ CFLAGS = -c -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 $(EXTRACFLAGS)
 ifeq ($(strip $(solaris)),true)
 	CFLAGS += -xO5 -xchar=u
 else
-	# Always turn OFF strict aliasing, even when optimizing. Otherwise, this
-	#  is just an accident waiting to happen...  --ryan.
+	# Always turn OFF strict aliasing, even when optimizing. Otherwise,
+	#  this is just an accident waiting to happen...  --ryan.
 	CFLAGS += -fno-strict-aliasing
 	CFLAGS += -W -Wall -Wno-unused -funsigned-char
 	ifeq ($(strip $(macosx)),true)
@@ -130,9 +128,9 @@ else
 	endif
 endif
 
-# Uncomment this to compile with the Intel compiler (v6.0)
-#CC = icc
-#CFLAGS = -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 -DUSE_I386_ASM=1 $(EXTRACFLAGS) -O2
+# Rename these to compile with the Intel compiler (v6.0)
+INTEL_CC = icc
+INTEL_CFLAGS = -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 -DUSE_I386_ASM=1 $(EXTRACFLAGS) -O2
 
 LDLIBS = $(SDL_LDFLAGS) -lSDL -lSDL_mixer $(EXTRALDFLAGS)
 
@@ -141,14 +139,14 @@ LDLIBS = $(SDL_LDFLAGS) -lSDL_mixer $(EXTRALDFLAGS)
 endif
 
 # !!! FIXME: Do we even need this? It doesn't fly on MacOS X.  --ryan.
-#LDLIBS += -Wl,-E
+BROKEN_LDLIBS += -Wl,-E
 
 .PHONY: duke3d build buildengine clean distclean
 all: buildengine duke3d build
 
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $<
+	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $< $(CPPFLAGS)
 
 # Animation playback crashes due to optimization error on MacOS X. --ryan.
 ifeq ($(strip $(macosx)),true)
@@ -187,6 +185,9 @@ duke3d: \
 	dukemusc.o \
 	audiolib/audiolib.a
 	$(CC) $^ $(BUILDOBJS) $(LDLIBS) -o $@
+
+Makefile_orig: Makefile_orig.in ./config.status
+	./config.status
 
 build: astub.o
 	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@

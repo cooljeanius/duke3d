@@ -6,7 +6,7 @@ ACLOCAL_AMFLAGS = -I m4 --install
 
 linux_ppc := false
 beos := false
-macosx := false
+macosx := true
 freebsd := false
 solaris := false
 shareware := false
@@ -147,7 +147,7 @@ all: buildengine duke3d build
 
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $<
+	$(CC) $(CFLAGS) $(OPTIMIZE) -o $@ $< $(CPPFLAGS)
 
 # Animation playback crashes due to optimization error on MacOS X. --ryan.
 @ifGNUmake@ifeq ($(strip $(macosx)),true)
@@ -191,11 +191,19 @@ build: astub.o
 	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
 
 clean-local:
-	$(MAKE) -C audiolib clean
-	$(MAKE) -C buildengine clean
+	$(MAKE) -C audiolib -f Makefile_orig clean
+	$(MAKE) -C buildengine -f Makefile_orig clean
 	rm -rf duke3d build *.o
 
 distclean-local: clean-local
-	$(MAKE) -C audiolib distclean
-	$(MAKE) -C buildengine distclean
+	if test -e audiolib/Makefile_orig; then \
+	  $(MAKE) -C audiolib -f Makefile_orig distclean; \
+	elif test -e audiolib/Makefile; then \
+	  $(MAKE) -C audiolib -f Makefile distclean; \
+	fi
+	if test -e buildengine/Makefile_orig; then \
+	  $(MAKE) -C buildengine -f Makefile_orig distclean; \
+	elif test -e buildengine/Makefile; then \
+	  $(MAKE) -C buildengine -f Makefile distclean; \
+	fi
 	rm -rf *~

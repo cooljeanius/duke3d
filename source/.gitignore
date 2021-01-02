@@ -3,3 +3,5 @@ libtool
 config.h
 Makefile
 Makefile*orig
+confdefs.h
+conftest*

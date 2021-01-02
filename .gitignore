@@ -1,5 +1,6 @@
 *DS_Store*
 *.o
+*.o.tmp
 *~
 *.cache
 *.status
@@ -11,3 +12,5 @@ config.h
 */config.h
 stamp-h*
 Makefile
+confdefs.h
+conftest*

@@ -7,7 +7,7 @@
 
 linux_ppc := false
 beos := false
-macosx := false
+macosx := true
 freebsd := false
 solaris := false
 linux64 := false
@@ -16,8 +16,6 @@ linux64 := false
 # If this makefile fails to detect Cygwin correctly, or you want to force
 #  the build process's behaviour, set it to "true" or "false" (w/o quotes).
 #-----------------------------------------------------------------------------#
-#cygwin := true
-#cygwin := false
 cygwin := autodetect
 
 #-----------------------------------------------------------------------------#
@@ -40,30 +38,27 @@ endif
 
 CC = @CC@
 LINKER = @LD@
+CPPFLAGS = @CPPFLAGS@
 
 #-----------------------------------------------------------------------------#
 # To use a different platform's ASM or portable C, change this.
 #-----------------------------------------------------------------------------#
-#USE_ASM := -DUSE_I386_ASM
+USE_ASM_DEFINE_FLAG := -DUSE_I386_ASM
 
 
 #-----------------------------------------------------------------------------#
 # Don't touch this unless you know what you are doing.
 #-----------------------------------------------------------------------------#
-#useperl := true
 useperl := false
 
-#useopengl := true
 useopengl := false
 GL_INCLDIR := /usr/X11R6/include
 
-#usedlls := true
 usedlls := false
 
-#usephysfs := true
 usephysfs := false
 
-#networking := stubbed
+# or "stubbed" perhaps:
 networking := udp
 
 
@@ -120,10 +115,10 @@ else
   endif
 endif
 
-# Uncomment to use the Intel compiler (v6.0)
+# Rename these variables to use the Intel compiler (v6.0)
 # Note: Version 6.0   Build 020312Z fails to compile engine.c
-#CC = icc
-#CFLAGS = -g $(SDL_CFLAGS) -DUSE_SDL=1 -O2
+INTEL_CC = icc
+INTEL_CFLAGS = -g $(SDL_CFLAGS) -DUSE_SDL=1 -O2
 
 ifeq ($(strip $(cygwin)),true)
   ASM = nasmw
@@ -140,8 +135,11 @@ else
 endif
 
 ifeq ($(strip $(macosx)),true)
-  CFLAGS += -DPLATFORM_MACOSX=1 -mdynamic-no-pic -falign-loops=32 -falign-functions=32
-  LDFLAGS += -framework AppKit -lSDL -lSDLmain
+  # 32 or 64:
+  macOSbits := 64
+  # clang fails to support the last 2 flags here:
+  CFLAGS += -DPLATFORM_MACOSX=1 -mdynamic-no-pic # -falign-loops=$(macOSbits) -falign-functions=$(macOSbits)
+  LDFLAGS += -lSDL -lSDLmain -framework AppKit
 endif
 
 ifeq ($(strip $(freebsd)),true)
@@ -207,7 +205,7 @@ NETSRCS = mmulti.c
 
 GAMEEXE = game
 GAMESRCS = game.c 
-#GAMESRCS += multi.c k.asm kdmeng.c
+EXTRA_GAMESRCS += multi.c k.asm kdmeng.c
 ifneq ($(strip $(usedlls)),true)
 GAMESRCS += $(ENGINESRCS)
 GAMESRCS += $(NETSRCS)
@@ -240,7 +238,7 @@ endif
 
 # Rules for turning source files into .o files
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS) $(CPPFLAGS)
 
 %.o: %.asm
 	$(ASM) $(ASMFLAGS) -o $@ $<
@@ -277,10 +275,13 @@ $(NETDLL) : $(NETOBJS)
 endif
 
 $(GAMEEXE) : $(ENGINEDLL) $(NETDLL) $(GAMEOBJS) $(PERLOBJS)
-	$(LINKER) -o $(GAMEEXE) $(LDFLAGS) $(LDPERL) $(PERLOBJS) $(GAMEOBJS) $(ENGINEDLL) $(NETDLL)
+	$(CC) -o $(GAMEEXE) $(LDFLAGS) $(LDPERL) $(PERLOBJS) $(GAMEOBJS) $(ENGINEDLL) $(NETDLL)
 
 $(BUILDEXE) : $(ENGINEDLL) $(BUILDOBJS)
-	$(LINKER) -o $(BUILDEXE) $(LDFLAGS) $(BUILDOBJS) $(ENGINEDLL)
+	$(CC) -o $(BUILDEXE) $(LDFLAGS) $(BUILDOBJS) $(ENGINEDLL)
+
+Makefile_orig: Makefile_orig.in ../config.status
+	../config.status
 
 listclean:
 	@echo "A 'make clean' would remove" $(CLEANUP)
