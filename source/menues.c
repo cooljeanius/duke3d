@@ -28,6 +28,8 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 #include "mouse.h"
 #include "animlib.h"
 
+#include "../extras/config.h"
+
 /* this should be a proper prototype included from a header file */
 extern int stricmp(const char *x, const char *y);
 

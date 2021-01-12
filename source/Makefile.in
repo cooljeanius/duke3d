@@ -913,7 +913,9 @@ all: buildengine duke3d build
 @ifGNUmake@endif
 
 audiolib/audiolib.a:
-	$(MAKE) -C audiolib CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)"
+	$(MAKE) -C audiolib -f Makefile_orig \
+	  CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)" \
+	  CPPFLAGS="$(CPPFLAGS)"
 
 buildengine:
 	make -C buildengine -f Makefile_orig

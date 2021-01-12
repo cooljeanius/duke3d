@@ -30,10 +30,10 @@ Prepared for public release: 03/21/2003 - Charlie Wiederhold, 3D Realms
 #include <string.h>
 #include <stdlib.h>
 
-#if !PLATFORM_MACOSX && !PLATFORM_FREEBSD
-#include <malloc.h>
+#if (!PLATFORM_MACOSX && !PLATFORM_FREEBSD) && defined(HAVE_MALLOC_H)
+# include <malloc.h>
 #else
-#include <stdlib.h>
+# include <stdlib.h>
 #endif
 
 #include <fcntl.h>
