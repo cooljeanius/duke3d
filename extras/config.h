@@ -49,8 +49,9 @@ extern int32 ScreenMode;
 extern int32 ScreenWidth;
 extern int32 ScreenHeight;
 
-void CONFIG_ReadSetup( void );
-void CONFIG_GetSetupFilename( void );
-void CONFIG_WriteSetup( void );
+void CONFIG_PutString(char *, char *, char *);
+void CONFIG_ReadSetup(void);
+void CONFIG_GetSetupFilename(void);
+void CONFIG_WriteSetup(void);
 
 #endif

@@ -1,24 +1,40 @@
 #ifndef _INCLUDE_PLATFORM_H_
 #define _INCLUDE_PLATFORM_H_
 
+#if !defined(__has_include)
+# define __has_include(foo) 0
+#endif /* !__has_include */
+
 #if (defined PLATFORM_WIN32)
-#include "win32_compat.h"
+# include "win32_compat.h"
 #elif (defined PLATFORM_MACOSX)
-#include "unix_compat.h"
-#include <machine/endian.h>
+# include "unix_compat.h"
+# include <machine/endian.h>
 #elif (defined PLATFORM_FREEBSD)
-#include "unix_compat.h"
-#include <sys/endian.h>
+# include "unix_compat.h"
+# include <sys/endian.h>
 #elif (defined PLATFORM_UNIX)
-#include "unix_compat.h"
-#if !defined(__SUNPRO_C)
-#include <endian.h>
-#endif
+# include "unix_compat.h"
+# if !defined(__SUNPRO_C) && (defined(HAVE_ENDIAN_H) || __has_include(<endian.h>))
+#  include <endian.h>
+# else
+#  if defined(HAVE_MACHINE_ENDIAN_H) || __has_include(<machine/endian.h>)
+#   include <machine/endian.h>
+#  else
+#   if defined(HAVE_SYS_ENDIAN_H) || __has_include(<sys/endian.h>)
+#    include <sys/endian.h>
+#   else
+#    if defined(__GNUC__) && !defined(__STRICT_ANSI__)
+#     warning "platform.h wants to include an endianness header on unix-likes!"
+#    endif /* __GNUC__ && !__STRICT_ANSI__ */
+#   endif /* HAVE_SYS_ENDIAN_H */
+#  endif /* HAVE_MACHINE_ENDIAN_H */
+# endif /* !__SUNPRO_C && HAVE_ENDIAN_H */
 #elif (defined PLATFORM_DOS)
-#include "doscmpat.h"
+# include "doscmpat.h"
 #else
-#error Define your platform!
-#endif
+# error "Define your platform!"
+#endif /* Platform check */
 
 #ifdef PLATFORM_MACOSX
     /* may be an x86 Mac, so turn off PowerPC ASM and Altivec if needed... */

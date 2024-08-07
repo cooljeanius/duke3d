@@ -13,6 +13,13 @@
 
 #include "platform.h"
 
+#if defined(HAVE_SYS_TYPES_H) || __has_include(<sys/types.h>)
+# include <sys/types.h>
+#endif /* HAVE_SYS_TYPES_H */
+#if defined(HAVE_SYS_SOCKET_H) || __has_include(<sys/socket.h>)
+# include <sys/socket.h>
+#endif /* HAVE_SYS_SOCKET_H */
+
 #include "pragmas.h"
 
 #define MAXPLAYERS 16
@@ -920,7 +927,11 @@ static int open_udp_socket(int ip, int port)
     {
         /* Linux-specific. */
         int flags = 1;
-        setsockopt(udpsocket, SOL_IP, IP_RECVERR, &flags, sizeof (flags));
+        #if defined(SOL_IP) && defined(IP_RECVERR)
+        setsockopt(udpsocket, SOL_IP, IP_RECVERR, &flags, sizeof(flags));
+        #else
+        setsockopt(udpsocket, SO_DEBUG, SO_DEBUG, &flags, sizeof(flags));
+        #endif
     }
     #endif
 

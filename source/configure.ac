@@ -63,8 +63,8 @@ if test "x${EGREP}" = "x"; then
 fi
 AC_CHECK_HEADERS([arpa/inet.h endian.h fcntl.h limits.h machine/endian.h \
                   malloc.h malloc/malloc.h memory.h netdb.h netinet/in.h \
-                  platform.h stddef.h stdio.h stdlib.h string.h sys/ioctl.h \
-                  sys/param.h sys/socket.h sys/time.h unistd.h])dnl
+                  platform.h stddef.h stdio.h stdlib.h string.h sys/endian.h \
+                  sys/ioctl.h sys/param.h sys/socket.h sys/time.h unistd.h])dnl
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL

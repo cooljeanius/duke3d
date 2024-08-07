@@ -91,8 +91,9 @@ void printmessage16(char name[82]);
 
 #define TICSPERFRAME 3
 
-
-//#include "water.c"
+#if 0
+# include "water.c"
+#endif /* 0 */
 
 char *Myname = "stryker@metronet.com";
 
@@ -134,12 +135,17 @@ static char keys[NUMKEYS] =
     };
 extern char buildkeys[NUMKEYS];
 
+extern int ActorMem(int i);
+extern void SetBOSS1Palette(void);
+extern void SetGAMEPalette(void);
+extern void SetWATERPalette(void);
+extern void SearchSectorsBackward(void);
+extern void SearchSectorsForward(void);
+extern void kensetpalette(char *);
 
-
-
-
-
-//extern void __interrupt __far timerhandler(void);
+#if 0
+extern void __interrupt __far timerhandler(void);
+#endif /* 0 */
 
 long xoldtimerhandler;
 
@@ -1303,7 +1309,8 @@ char TITLEpalette[768];
 char REALMSpalette[768];
 char BOSS1palette[768];
 
-ReadGamePalette()
+void
+ReadGamePalette(void)
 {
  int i,fp;
  if((fp=kopen4load("palette.dat",0)) == -1) return;
@@ -1312,8 +1319,8 @@ ReadGamePalette()
  kclose(fp);
 }
 
-
-void ReadPaletteTable()
+void
+ReadPaletteTable(void)
 {
  int i,j,fp;
  char num_tables,lookup_num;
@@ -1926,7 +1933,8 @@ void ExtPreCheckKeys(void) // just before drawrooms
                 {
                         lockbyte4094 = 1;
                         if (waloff[4094] == 0)
-                                allocache(&waloff[4094],320L*200L,&lockbyte4094);
+                            allocache(&waloff[4094], (320L * 200L),
+                                      (unsigned char *)&lockbyte4094);
                         setviewtotile(4094,320L,200L);
                         searchx ^= searchy; searchy ^= searchx; searchx ^= searchy;
                         searchx = ydim-1-searchx;
@@ -2214,6 +2222,7 @@ void faketimerhandler(void)
         }
 }
 
+int
 ActorMem(int i)
 {int total=0,j;
     switch(i)
@@ -2270,6 +2279,7 @@ ActorMem(int i)
 
 int curpalette=0;
 
+void
 SetBOSS1Palette()
 {int x;
  if(curpalette==3) return;
@@ -2277,7 +2287,7 @@ SetBOSS1Palette()
  kensetpalette(BOSS1palette);
 }
 
-
+void
 SetSLIMEPalette()
 {int x;
  if(curpalette==2) return;
@@ -2285,21 +2295,23 @@ SetSLIMEPalette()
  kensetpalette(SLIMEpalette);
 }
 
-SetWATERPalette()
+void
+SetWATERPalette(void)
 {int x;
  if(curpalette==1) return;
  curpalette=1;
  kensetpalette(WATERpalette);
 }
 
-
-SetGAMEPalette()
+void
+SetGAMEPalette(void)
 {int x;
  if(curpalette==0) return;
  curpalette=0;
  kensetpalette(GAMEpalette);
 }
 
+void
 kensetpalette(char *vgapal)
 {
         long i;
@@ -2315,7 +2327,8 @@ kensetpalette(char *vgapal)
         VBE_setPalette(0L,256L,vesapal);
 }
 
-SearchSectorsForward()
+void
+SearchSectorsForward(void)
 {
  long ii=0;
  if(cursector_lotag!=0)
@@ -2338,7 +2351,8 @@ SearchSectorsForward()
  printmessage16("> Sector Search : none");
 }
 
-SearchSectorsBackward()
+void
+SearchSectorsBackward(void)
 {
  long ii=0;
  if(cursector_lotag!=0)

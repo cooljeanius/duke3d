@@ -143,6 +143,9 @@
 /* Define to 1 if you have the 'strtol' function. */
 #undef HAVE_STRTOL
 
+/* Define to 1 if you have the <sys/endian.h> header file. */
+#undef HAVE_SYS_ENDIAN_H
+
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
 #undef HAVE_SYS_IOCTL_H
 
