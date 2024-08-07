@@ -959,7 +959,8 @@ distclean-local: clean-local
 	elif test -e buildengine/Makefile; then \
 	  $(MAKE) -C buildengine -f Makefile distclean; \
 	fi
-	rm -rf *~ build-aux/*~ m4/*~
+	rm -rfv autom4te.cache || rmdir autom4te.cache
+	rm -rfv *~ build-aux/*~ m4/*~ autoscan.log
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

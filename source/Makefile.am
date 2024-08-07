@@ -208,4 +208,5 @@ distclean-local: clean-local
 	elif test -e buildengine/Makefile; then \
 	  $(MAKE) -C buildengine -f Makefile distclean; \
 	fi
-	rm -rf *~ build-aux/*~ m4/*~
+	rm -rfv autom4te.cache || rmdir autom4te.cache
+	rm -rfv *~ build-aux/*~ m4/*~ autoscan.log
