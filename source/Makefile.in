@@ -337,7 +337,8 @@ ACLOCAL_AMFLAGS = -I m4 --install
 #-----------------------------------------------------------------------------#
 linux_ppc := false
 beos := false
-macosx := true
+@BUILDING_FOR_APPLE_HOST_FALSE@macosx := false
+@BUILDING_FOR_APPLE_HOST_TRUE@macosx := true
 freebsd := false
 solaris := false
 shareware := false

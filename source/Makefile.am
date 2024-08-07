@@ -6,7 +6,11 @@ ACLOCAL_AMFLAGS = -I m4 --install
 
 linux_ppc := false
 beos := false
+if BUILDING_FOR_APPLE_HOST
 macosx := true
+else
+macosx := false
+endif
 freebsd := false
 solaris := false
 shareware := false

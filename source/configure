@@ -704,6 +704,8 @@ CCASFLAGS
 CCAS
 ac_ct_AR
 AR
+BUILDING_FOR_APPLE_HOST_FALSE
+BUILDING_FOR_APPLE_HOST_TRUE
 ifnGNUmake
 ifGNUmake
 MAINT
@@ -5420,6 +5422,14 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 # Checks for programs.
+
+ if test "x${host_vendor}" = "xapple"; then
+  BUILDING_FOR_APPLE_HOST_TRUE=
+  BUILDING_FOR_APPLE_HOST_FALSE='#'
+else
+  BUILDING_FOR_APPLE_HOST_TRUE='#'
+  BUILDING_FOR_APPLE_HOST_FALSE=
+fi
 
 
   if test -n "$ac_tool_prefix"; then
@@ -20974,6 +20984,10 @@ fi
 
 if test -z "${MAINTAINER_MODE_TRUE}" && test -z "${MAINTAINER_MODE_FALSE}"; then
   as_fn_error $? "conditional \"MAINTAINER_MODE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${BUILDING_FOR_APPLE_HOST_TRUE}" && test -z "${BUILDING_FOR_APPLE_HOST_FALSE}"; then
+  as_fn_error $? "conditional \"BUILDING_FOR_APPLE_HOST\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCCAS_TRUE}" && test -z "${am__fastdepCCAS_FALSE}"; then

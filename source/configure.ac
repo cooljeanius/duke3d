@@ -18,6 +18,7 @@ AC_LANG([C])dnl
 
 # Checks for programs.
 AC_USE_SYSTEM_EXTENSIONS
+AM_CONDITIONAL([BUILDING_FOR_APPLE_HOST],[test "x${host_vendor}" = "xapple"])
 AM_PROG_AR
 AM_PROG_AS
 AC_PROG_CC
