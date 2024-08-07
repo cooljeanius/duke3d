@@ -306,6 +306,11 @@ OTHER VARIABLES:
 
 #define PORTSIG  "Port by Ryan C. Gordon, Andrew Henderson, Dan Olson, and a cast of thousands."
 
+/* Some function prototypes: */
+EXTERN short getnumber256(char namestart[80], short, long);
+EXTERN void getpoint(long, long, long *, long *);
+EXTERN long getpointhighlight(long, long);
+
 #endif  /* defined _INCLUDE_BUILD_H_ */
 
 /* end of build.h ... */
