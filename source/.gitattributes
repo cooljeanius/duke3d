@@ -1,3 +1,4 @@
+aclocal.m4 linguist-generated
 build-aux/ar-lib linguist-vendored
 build-aux/compile linguist-vendored
 build-aux/config.guess linguist-vendored
@@ -5,3 +6,9 @@ build-aux/config.sub linguist-vendored
 build-aux/install-sh linguist-vendored
 build-aux/ltmain.sh linguist-vendored
 build-aux/missing linguist-vendored
+config.h.in linguist-generated
+configure linguist-generated
+Makefile.in linguist-generated
+m4/ax_*.m4 linguist-vendored
+m4/libtool.m4 linguist-vendored
+m4/lt*.m4 linguist-vendored

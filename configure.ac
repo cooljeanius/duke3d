@@ -14,7 +14,7 @@ AC_PROG_CC
 AC_PROG_INSTALL
 
 # Checks for libraries.
-AC_CHECK_LIB([c],[printf])
+AC_CHECK_LIB([c],[printf])dnl
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h limits.h malloc.h stdlib.h string.h])dnl

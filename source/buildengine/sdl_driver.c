@@ -372,7 +372,7 @@ static void init_new_res_vars(int davidoption)
 
     if (renderer == RENDERER_OPENGL3D)
         frameplace = (long) NULL;
-    else
+    else {
         frameplace = (long) ( ((Uint8 *) surface->pixels) );
 
   	if (screen != NULL)
@@ -381,6 +381,7 @@ static void init_new_res_vars(int davidoption)
    	    if (screenalloctype == 1) suckcache((long *)screen);
    		screen = NULL;
    	} /* if */
+    }
 
     if (davidoption != -1)
     {
@@ -1236,7 +1237,7 @@ void _platform_init(int argc, char **argv, const char *title, const char *icon)
     OSErr err;
 
 	has_altivec = 0;
-    err = Gestalt(gestaltPowerPCProcessorFeatures, &cpufeature);
+    err = Gestalt(gestaltPowerPCProcessorFeatures, (SInt32 *)&cpufeature);
     if (err == noErr)
     {
         if ((1 << gestaltPowerPCHasVectorInstructions) & cpufeature)
@@ -1442,8 +1443,8 @@ int setvesa(long x, long y)
 
 int screencapture(char *_filename, char inverseit)
 {
-	char *ptr = NULL;
-	int fil = -1;
+    char *ptr = NULL;
+    int fil = -1;
     long i, bufplc, p, col, ncol, leng, numbytes, xres;
     int captcnt;
     size_t flen = strlen(_filename);
@@ -1463,117 +1464,169 @@ int screencapture(char *_filename, char inverseit)
     if (fil == -1)
         return -1;
 
-	if (qsetmode == 200)
-	{
-		pcxheader[8] = ((xdim-1)&255); pcxheader[9] = (((xdim-1)>>8)&255);
-		pcxheader[10] = ((ydim-1)&255); pcxheader[11] = (((ydim-1)>>8)&255);
-		pcxheader[12] = (xdim&255); pcxheader[13] = ((xdim>>8)&255);
-		pcxheader[14] = (ydim&255); pcxheader[15] = ((ydim>>8)&255);
-		pcxheader[66] = (xdim&255); pcxheader[67] = ((xdim>>8)&255);
-	}
-	else
-	{
-		pcxheader[8] = ((640-1)&255); pcxheader[9] = (((640-1)>>8)&255);
-		pcxheader[10] = ((qsetmode-1)&255); pcxheader[11] = (((qsetmode-1)>>8)&255);
-		pcxheader[12] = (640&255); pcxheader[13] = ((640>>8)&255);
-		pcxheader[14] = (qsetmode&255); pcxheader[15] = ((qsetmode>>8)&255);
-		pcxheader[66] = (640&255); pcxheader[67] = ((640>>8)&255);
-	}
+    if (qsetmode == 200)
+    {
+        pcxheader[8] = ((xdim-1)&255); pcxheader[9] = (((xdim-1)>>8)&255);
+        pcxheader[10] = ((ydim-1)&255); pcxheader[11] = (((ydim-1)>>8)&255);
+        pcxheader[12] = (xdim&255); pcxheader[13] = ((xdim>>8)&255);
+        pcxheader[14] = (ydim&255); pcxheader[15] = ((ydim>>8)&255);
+        pcxheader[66] = (xdim&255); pcxheader[67] = ((xdim>>8)&255);
+    }
+    else
+    {
+        pcxheader[8] = ((640-1)&255); pcxheader[9] = (((640-1)>>8)&255);
+        pcxheader[10] = ((qsetmode-1)&255); pcxheader[11] = (((qsetmode-1)>>8)&255);
+        pcxheader[12] = (640&255); pcxheader[13] = ((640>>8)&255);
+        pcxheader[14] = (qsetmode&255); pcxheader[15] = ((qsetmode>>8)&255);
+        pcxheader[66] = (640&255); pcxheader[67] = ((640>>8)&255);
+    }
 
-	write(fil,&pcxheader[0],128);
+    write(fil,&pcxheader[0],128);
 
-	if (qsetmode == 200)
-	{
-		ptr = (char *)frameplace;
-		numbytes = xdim*ydim;
-		xres = xdim;
-	}
-	else
-	{
-		numbytes = (mul5(qsetmode)<<7);
-		xres = 640;
-	}
+    if (qsetmode == 200)
+    {
+        ptr = (char *)frameplace;
+        numbytes = xdim*ydim;
+        xres = xdim;
+    }
+    else
+    {
+        numbytes = (mul5(qsetmode)<<7);
+        xres = 640;
+    }
 
-	bufplc = 0; p = 0;
-	while (p < numbytes)
-	{
-//		koutp(97,kinp(97)|3);
+    bufplc = 0; p = 0;
+    while (p < numbytes)
+    {
+#if 0
+        koutp(97,kinp(97)|3);
+#endif /* 0 */
 
-		if (qsetmode == 200) { col = *ptr; p++; ptr++; }
-		else
-		{
-			col = readpixel(p);
-			p++;
-			if ((inverseit == 1) && (((col&7) == 0) || ((col&7) == 7))) col ^= 15;
-		}
+        if (qsetmode == 200) { col = *ptr; p++; ptr++; }
+        else
+        {
+            col = readpixel(p);
+            p++;
+            if ((inverseit == 1) && (((col&7) == 0) || ((col&7) == 7)))
+                col ^= 15;
+        }
 
-		leng = 1;
+        leng = 1;
 
-		if (qsetmode == 200) ncol = *ptr;
-		else
-		{
-			ncol = readpixel(p);
-			if ((inverseit == 1) && (((ncol&7) == 0) || ((ncol&7) == 7))) ncol ^= 15;
-		}
+        if (qsetmode == 200) ncol = *ptr;
+        else
+        {
+            ncol = readpixel(p);
+            if ((inverseit == 1) && (((ncol&7) == 0) || ((ncol&7) == 7)))
+            	ncol ^= 15;
+        }
 
-		while ((ncol == col) && (p < numbytes) && (leng < 63) && ((p%xres) != 0))
-		{
-			leng++;
+        while ((ncol == col) && (p < numbytes) && (leng < 63) && ((p%xres) != 0))
+        {
+            leng++;
 
-			if (qsetmode == 200) { p++; ptr++; ncol = *ptr; }
-			else
-			{
-				p++;
-				ncol = readpixel(p);
-				if ((inverseit == 1) && (((ncol&7) == 0) || ((ncol&7) == 7))) ncol ^= 15;
-			}
-		}
+            if (qsetmode == 200) { p++; ptr++; ncol = *ptr; }
+            else
+            {
+                p++;
+                ncol = readpixel(p);
+                if ((inverseit == 1) && (((ncol&7) == 0) || ((ncol&7) == 7)))
+                    ncol ^= 15;
+            }
+        }
 
-		//koutp(97,kinp(97)&252);
+#if 0
+        koutp(97,kinp(97)&252);
+#endif /* 0 */
 
-		if ((leng > 1) || (col >= 0xc0))
-		{
-			tempbuf[bufplc++] = (leng|0xc0);
-			if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-		}
-		tempbuf[bufplc++] = col;
-		if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-	}
+        if ((leng > 1) || (col >= 0xc0))
+        {
+            tempbuf[bufplc++] = (leng|0xc0);
+            if (bufplc == 4096) {
+                bufplc = 0;
+                if (write(fil,&tempbuf[0],4096) < 4096) {
+                    close(fil);
+                    return(-1);
+                }
+            }
+        }
+        tempbuf[bufplc++] = col;
+        if (bufplc == 4096) {
+            bufplc = 0;
+            if (write(fil,&tempbuf[0],4096) < 4096) {
+                close(fil);
+                return(-1);
+            }
+        }
+    }
 
-	tempbuf[bufplc++] = 0xc;
-	if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
+    tempbuf[bufplc++] = 0xc;
+    if (bufplc == 4096) {
+        bufplc = 0;
+        if (write(fil,&tempbuf[0],4096) < 4096) {
+            close(fil);
+            return(-1);
+        }
+    }
 
-	if (qsetmode == 200)
-	{
-		VBE_getPalette(0,256,&tempbuf[4096]);
-		for(i=0;i<256;i++)
-		{
-			tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+2]<<2);
-			if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-			tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+1]<<2);
-			if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-			tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+0]<<2);
-			if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-		}
-	}
-	else
-	{
-		for(i=0;i<768;i++)
-		{
-			if (i < 48)
-				tempbuf[bufplc++] = (vgapal16[i]<<2);
-			else
-				tempbuf[bufplc++] = 0;
-			if (bufplc == 4096) { bufplc = 0; if (write(fil,&tempbuf[0],4096) < 4096) { close(fil); return(-1); } }
-		}
+    if (qsetmode == 200)
+    {
+        VBE_getPalette(0, 256, (char *)&tempbuf[4096]);
+        for(i=0;i<256;i++)
+        {
+            tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+2]<<2);
+            if (bufplc == 4096) {
+                bufplc = 0;
+                if (write(fil,&tempbuf[0],4096) < 4096) {
+                    close(fil);
+                    return(-1);
+                }
+            }
+            tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+1]<<2);
+            if (bufplc == 4096) {
+                bufplc = 0;
+                if (write(fil,&tempbuf[0],4096) < 4096) {
+                    close(fil);
+                    return(-1);
+                }
+            }
+            tempbuf[bufplc++] = (tempbuf[(i<<2)+4096+0]<<2);
+            if (bufplc == 4096) {
+                bufplc = 0;
+                if (write(fil,&tempbuf[0],4096) < 4096) {
+                    close(fil);
+                    return(-1);
+                }
+            }
+        }
+    }
+    else
+    {
+        for(i=0;i<768;i++)
+        {
+            if (i < 48)
+                tempbuf[bufplc++] = (vgapal16[i]<<2);
+            else
+                tempbuf[bufplc++] = 0;
+            if (bufplc == 4096) {
+            	bufplc = 0;
+                if (write(fil,&tempbuf[0],4096) < 4096) {
+                    close(fil);
+                    return(-1);
+                }
+            }
+        }
+    }
 
-	}
+    if (bufplc > 0) {
+        if (write(fil,&tempbuf[0],bufplc) < bufplc) {
+            close(fil);
+            return(-1);
+        }
+    }
 
-	if (bufplc > 0)
-		if (write(fil,&tempbuf[0],bufplc) < bufplc) { close(fil); return(-1); }
-
-	close(fil);
-	return(0);
+    close(fil);
+    return(0);
 } /* screencapture */
 
 
@@ -2303,7 +2356,7 @@ void drawline16(long XStart, long YStart, long XEnd, long YEnd, char Color)
     char *ScreenPtr;
     long dx, dy;
 
-    if (SDL_MUSTLOCK(surface))
+    if (SDL_MUSTLOCK(surface)) {
         SDL_LockSurface(surface);
 
 	dx = XEnd-XStart; dy = YEnd-YStart;
@@ -2334,6 +2387,7 @@ void drawline16(long XStart, long YStart, long XEnd, long YEnd, char Color)
 
 	/* Make sure the status bar border draws correctly - DDOI */
 	if (!pageoffset) { YStart += 336; YEnd += 336; }
+    }
 
     /* We'll always draw top to bottom */
     if (YStart > YEnd) {
