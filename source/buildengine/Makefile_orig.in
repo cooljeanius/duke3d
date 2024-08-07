@@ -39,6 +39,7 @@ endif
 CC = @CC@
 LINKER = @LD@
 CPPFLAGS = @CPPFLAGS@
+LIBS = @LIBS@
 
 #-----------------------------------------------------------------------------#
 # To use a different platform's ASM or portable C, change this.
@@ -275,10 +276,10 @@ $(NETDLL) : $(NETOBJS)
 endif
 
 $(GAMEEXE) : $(ENGINEDLL) $(NETDLL) $(GAMEOBJS) $(PERLOBJS)
-	$(CC) -o $(GAMEEXE) $(LDFLAGS) $(LDPERL) $(PERLOBJS) $(GAMEOBJS) $(ENGINEDLL) $(NETDLL)
+	$(CC) -o $(GAMEEXE) $(LDFLAGS) $(LDPERL) $(PERLOBJS) $(GAMEOBJS) $(ENGINEDLL) $(NETDLL) $(LIBS)
 
 $(BUILDEXE) : $(ENGINEDLL) $(BUILDOBJS)
-	$(CC) -o $(BUILDEXE) $(LDFLAGS) $(BUILDOBJS) $(ENGINEDLL)
+	$(CC) -o $(BUILDEXE) $(LDFLAGS) $(BUILDOBJS) $(ENGINEDLL) $(LIBS)
 
 Makefile_orig: Makefile_orig.in ../config.status
 	../config.status

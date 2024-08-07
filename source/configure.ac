@@ -36,6 +36,7 @@ LT_INIT([win32-dll])dnl
 
 # Checks for libraries.
 AM_PATH_SDL
+AC_SEARCH_LIBS([SDL_Init],[SDL SDL_mixer SDLmain SDL2 SDL2_mixer SDL2main])
 # FIXME: Replace `main' with a function in `-lSDL':
 AC_CHECK_LIB([SDL],[main])
 # FIXME: Replace `main' with a function in `-lSDL_mixer':
