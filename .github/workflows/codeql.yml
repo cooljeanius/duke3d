@@ -14,9 +14,13 @@ name: "CodeQL"
 
 on:
   push:
-    branches: ["master"]
+    branches:
+      - master
+      - dependabot/*
   pull_request:
-    branches: ["master"]
+    branches:
+      - master
+      - dependabot/*
   schedule:
     - cron: '25 19 * * 1'
 
@@ -46,6 +50,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - language: actions
+            build-mode: none
           - language: c-cpp
             build-mode: autobuild
           - language: javascript-typescript
@@ -74,7 +80,7 @@ jobs:
           sudo apt-get -qq update
           sudo apt-get -y install libc6-dev-amd64-cross libgcc-s1-amd64-cross \
             libtbb-dev nasm libsdl1.2-dev libsdl-mixer1.2-dev libphysfs-dev \
-            libion-dev libc6-dev-i386
+            libc6-dev-i386
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
