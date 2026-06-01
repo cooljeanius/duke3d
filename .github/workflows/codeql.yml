@@ -1,4 +1,5 @@
 ---
+# duke3d/.github/workflows/codeql.yml: GHA CodeQL workflow for Duke Nukem 3D
 # For most projects, this workflow file will not need changing; you simply need
 # to commit it to your repository.
 #
