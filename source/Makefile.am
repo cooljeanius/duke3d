@@ -125,12 +125,14 @@ CFLAGS = -c -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 $(EXTRACFLAGS)
 @ifGNUmake@	# Always turn OFF strict aliasing, even when optimizing.
 @ifGNUmake@     # Otherwise, this is just an accident waiting to happen. -ryan
 @ifGNUmake@	CFLAGS += -fno-strict-aliasing
-@ifGNUmake@	CFLAGS += -W -Wall -Wno-unused -funsigned-char
 @ifGNUmake@	ifeq ($(strip $(macosx)),true)
+@ifGNUmake@		CFLAGS += -Wmost -Wextra -Wno-unused -Wnewline-eof
 @ifGNUmake@		OPTIMIZE = -O3 -mdynamic-no-pic -falign-loops=16
 @ifGNUmake@	else
+@ifGNUmake@		CFLAGS += -Wall -Wextra -Wno-unused -Wno-unused-result
 @ifGNUmake@		OPTIMIZE = -O2
 @ifGNUmake@	endif
+@ifGNUmake@	CFLAGS += -Wno-unused-parameter -funsigned-char
 @ifGNUmake@endif
 
 # Rename these to compile with the Intel compiler (v6.0)
@@ -165,7 +167,7 @@ all: buildengine duke3d build
 @ifGNUmake@	$(CC) $(CFLAGS) -o $@ $<
 @ifGNUmake@endif
 
-audiolib/audiolib.a:
+audiolib/audiolib.a: audiolib/Makefile_orig
 	$(MAKE) -C audiolib -f Makefile_orig \
 	  CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)" \
 	  CPPFLAGS="$(CPPFLAGS)"
@@ -196,7 +198,7 @@ duke3d: \
 build: astub.o
 	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
 
-clean-local:
+clean-local: audiolib/Makefile_orig
 	$(MAKE) -C audiolib -f Makefile_orig clean
 	$(MAKE) -C buildengine -f Makefile_orig clean
 	rm -rf duke3d build *.o

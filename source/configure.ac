@@ -3,7 +3,7 @@ dnl# Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.70])
 AC_AUTOCONF_VERSION
-AC_INIT([duke3d],[0.1])
+AC_INIT([duke3d],[0.1],[icculus@clutteredmind.org])
 AC_CONFIG_SRCDIR([_animlib.h])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
@@ -20,16 +20,16 @@ AC_LANG([C])dnl
 AC_USE_SYSTEM_EXTENSIONS
 AM_CONDITIONAL([BUILDING_FOR_APPLE_HOST],[test "x${host_vendor}" = "xapple"])
 AM_PROG_AR
+if test "x${ac_cv_prog_ac_ct_AR}" = "x"; then
+  test -z "${ac_cv_prog_ac_ct_AR}" || unset ac_cv_prog_ac_ct_AR
+  AC_PROG_AR
+fi
 AM_PROG_AS
-AC_PROG_CC
-AM_PROG_CC_C_O
 AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_INSTALL
-AC_PROG_MAKE_SET
 AX_PERL_EXT
 AX_SYS_PERLSHARPBANG
-AC_PROG_RANLIB
 AC_EXEEXT
 AC_PATH_PROG([NASM],[nasm])
 LT_INIT([win32-dll])dnl
@@ -59,16 +59,21 @@ dnl# ISO C90 headers unconditionally.
 # script's behavior did not change.  They are probably safe to remove.
 AC_CHECK_INCLUDES_DEFAULT
 if test "x${EGREP}" = "x"; then
-  test -z "${EGREP}"
+  test -z "${EGREP}" || unset EGREP
   AC_PROG_EGREP
 fi
 AC_CHECK_HEADERS([arpa/inet.h endian.h fcntl.h limits.h machine/endian.h \
                   malloc.h malloc/malloc.h memory.h netdb.h netinet/in.h \
-                  platform.h stddef.h stdio.h stdlib.h string.h sys/endian.h \
-                  sys/ioctl.h sys/param.h sys/socket.h sys/time.h unistd.h])dnl
+                  platform.h stddef.h sys/endian.h sys/ioctl.h sys/param.h \
+                  sys/socket.h sys/time.h])dnl
+
+if test "x${ac_cv_header_unistd_h}" = "x"; then
+  test -z "${ac_cv_header_unistd_h}" || unset ac_cv_header_unistd_h
+  AC_CHECK_HEADERS([unistd.h])
+fi
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_CHECK_HEADER_STDBOOL
+AC_HEADER_STDBOOL  dnl# also "_CHECK"s it
 AC_C_INLINE
 AC_TYPE_SIZE_T
 

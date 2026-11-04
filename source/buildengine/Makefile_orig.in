@@ -135,11 +135,21 @@ else
   ASMOBJFMT = elf
 endif
 
+ifeq ($(strip $(macosx)),autodetect)
+  ifneq ($(strip $(shell gcc -v 2>&1 |grep "apple-darwin")),)
+    macosx := true
+  else
+    macosx := false
+  endif
+endif
+
 ifeq ($(strip $(macosx)),true)
   # 32 or 64:
   macOSbits := 64
   # clang fails to support the last 2 flags here:
   CFLAGS += -DPLATFORM_MACOSX=1 -mdynamic-no-pic # -falign-loops=$(macOSbits) -falign-functions=$(macOSbits)
+  EXTRACFLAGS += -DPLATFORM_MACOSX=1
+  CPPFLAGS += -DPLATFORM_MACOSX=1
   LDFLAGS += -lSDL -lSDLmain -framework AppKit
 endif
 
@@ -282,7 +292,7 @@ $(BUILDEXE) : $(ENGINEDLL) $(BUILDOBJS)
 	$(CC) -o $(BUILDEXE) $(LDFLAGS) $(BUILDOBJS) $(ENGINEDLL) $(LIBS)
 
 Makefile_orig: Makefile_orig.in ../config.status
-	../config.status
+	cd .. && ./config.status
 
 listclean:
 	@echo "A 'make clean' would remove" $(CLEANUP)

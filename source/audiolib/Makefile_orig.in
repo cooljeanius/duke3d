@@ -7,6 +7,10 @@ LDLIBS=
 CFLAGS += $(shell sdl-config --cflags)
 LDLIBS += $(shell sdl-config --libs)
 
+ifeq ($(strip $(macosx)),true)
+ CFLAGS += -DPLATFORM_MACOSX=1
+endif
+
 OBJ=fx_man.o dsl.o ll_man.o multivoc.o mv_mix.o mvreverb.o nodpmi.o \
 	pitch.o user.o usrhooks.o
 

@@ -160,7 +160,7 @@ animlib.o : animlib.c
 	$(CC) $(CFLAGS) -o $@ $<
 endif
 
-audiolib/audiolib.a:
+audiolib/audiolib.a: audiolib/Makefile
 	$(MAKE) -C audiolib CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)"
 
 buildengine:
@@ -192,7 +192,7 @@ Makefile_orig: Makefile_orig.in ./config.status
 build: astub.o
 	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
 
-clean:
+clean: audiolib/Makefile buildengine/Makefile
 	$(MAKE) -C audiolib clean
 	$(MAKE) -C buildengine clean
 	rm -rf duke3d build *.o

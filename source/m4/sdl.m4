@@ -1,17 +1,17 @@
-# sdl.m4: Configure paths for SDL
+# Configure paths for SDL
 # Sam Lantinga 9/21/99
 # stolen from Manish Singh
 # stolen back from Frank Belew
 # stolen from Manish Singh
 # Shamelessly stolen from Owen Taylor
 
-# serial 2
+# serial 3
 
 dnl AM_PATH_SDL([MINIMUM-VERSION, [ACTION-IF-FOUND [, ACTION-IF-NOT-FOUND]]])
 dnl Test for SDL, and define SDL_CFLAGS and SDL_LIBS
 dnl
 AC_DEFUN([AM_PATH_SDL],
-[dnl 
+[dnl
 dnl Get the cflags and libraries from the sdl-config script
 dnl
 AC_ARG_WITH(sdl-prefix,[  --with-sdl-prefix=PFX   Prefix where SDL is installed (optional)],
@@ -21,47 +21,60 @@ AC_ARG_WITH(sdl-exec-prefix,[  --with-sdl-exec-prefix=PFX Exec prefix where SDL 
 AC_ARG_ENABLE(sdltest, [  --disable-sdltest       Do not try to compile and run a test SDL program],
 		    , enable_sdltest=yes)
 
-  if test x$sdl_exec_prefix != x ; then
-    sdl_config_args="$sdl_config_args --exec-prefix=$sdl_exec_prefix"
-    if test x${SDL_CONFIG+set} != xset ; then
-      SDL_CONFIG=$sdl_exec_prefix/bin/sdl-config
-    fi
-  fi
-  if test x$sdl_prefix != x ; then
-    sdl_config_args="$sdl_config_args --prefix=$sdl_prefix"
-    if test x${SDL_CONFIG+set} != xset ; then
-      SDL_CONFIG=$sdl_prefix/bin/sdl-config
-    fi
-  fi
+  min_sdl_version=ifelse([$1], ,1.2.0,$1)
 
-  as_save_PATH="$PATH"
-  if test "x$prefix" != xNONE; then
-    PATH="$prefix/bin:$prefix/usr/bin:$PATH"
-  fi
-  AC_PATH_PROG(SDL_CONFIG, sdl-config, no, [$PATH])
-  PATH="$as_save_PATH"
-  min_sdl_version=ifelse([$1], ,0.11.0,$1)
-  AC_MSG_CHECKING(for SDL - version >= $min_sdl_version)
-  no_sdl=""
-  if test "$SDL_CONFIG" = "no" ; then
-    no_sdl=yes
+  if test "x$sdl_prefix$sdl_exec_prefix" = x ; then
+    PKG_CHECK_MODULES([SDL], [sdl >= $min_sdl_version],
+           [sdl_pc=yes],
+           [sdl_pc=no])
   else
-    SDL_CFLAGS=`$SDL_CONFIG $sdl_config_args --cflags`
-    SDL_LIBS=`$SDL_CONFIG $sdl_config_args --libs`
+    sdl_pc=no
+    if test x$sdl_exec_prefix != x ; then
+      sdl_config_args="$sdl_config_args --exec-prefix=$sdl_exec_prefix"
+      if test x${SDL_CONFIG+set} != xset ; then
+        SDL_CONFIG=$sdl_exec_prefix/bin/sdl-config
+      fi
+    fi
+    if test x$sdl_prefix != x ; then
+      sdl_config_args="$sdl_config_args --prefix=$sdl_prefix"
+      if test x${SDL_CONFIG+set} != xset ; then
+        SDL_CONFIG=$sdl_prefix/bin/sdl-config
+      fi
+    fi
+  fi
 
-    sdl_major_version=`$SDL_CONFIG $sdl_config_args --version | \
-           sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\1/'`
-    sdl_minor_version=`$SDL_CONFIG $sdl_config_args --version | \
-           sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\2/'`
-    sdl_micro_version=`$SDL_CONFIG $sdl_config_args --version | \
-           sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\3/'`
-    if test "x$enable_sdltest" = "xyes" ; then
-      ac_save_CFLAGS="$CFLAGS"
-      ac_save_CXXFLAGS="$CXXFLAGS"
-      ac_save_LIBS="$LIBS"
-      CFLAGS="$CFLAGS $SDL_CFLAGS"
-      CXXFLAGS="$CXXFLAGS $SDL_CFLAGS"
-      LIBS="$LIBS $SDL_LIBS"
+  if test "x$sdl_pc" = xyes ; then
+    no_sdl=""
+    SDL_CONFIG="$PKG_CONFIG sdl"
+  else
+    as_save_PATH="$PATH"
+    if test "x$prefix" != xNONE && test "$cross_compiling" != yes; then
+      PATH="$prefix/bin:$prefix/usr/bin:$PATH"
+    fi
+    AC_PATH_PROG(SDL_CONFIG, sdl-config, no, [$PATH])
+    PATH="$as_save_PATH"
+    AC_MSG_CHECKING(for SDL - version >= $min_sdl_version)
+    no_sdl=""
+
+    if test "$SDL_CONFIG" = "no" ; then
+      no_sdl=yes
+    else
+      SDL_CFLAGS=`$SDL_CONFIG $sdl_config_args --cflags`
+      SDL_LIBS=`$SDL_CONFIG $sdl_config_args --libs`
+
+      sdl_major_version=`$SDL_CONFIG $sdl_config_args --version | \
+             sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\1/'`
+      sdl_minor_version=`$SDL_CONFIG $sdl_config_args --version | \
+             sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\2/'`
+      sdl_micro_version=`$SDL_CONFIG $sdl_config_args --version | \
+             sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\)/\3/'`
+      if test "x$enable_sdltest" = "xyes" ; then
+        ac_save_CFLAGS="$CFLAGS"
+        ac_save_CXXFLAGS="$CXXFLAGS"
+        ac_save_LIBS="$LIBS"
+        CFLAGS="$CFLAGS $SDL_CFLAGS"
+        CXXFLAGS="$CXXFLAGS $SDL_CFLAGS"
+        LIBS="$LIBS $SDL_LIBS"
 dnl
 dnl Now check if the installed SDL is sufficiently new. (Also sanity
 dnl checks the results of sdl-config to some extent
@@ -70,38 +83,16 @@ dnl
       AC_RUN_IFELSE([AC_LANG_SOURCE([[
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "SDL.h"
-
-char*
-my_strdup (char *str)
-{
-  char *new_str;
-  
-  if (str)
-    {
-      new_str = (char *)malloc ((strlen (str) + 1) * sizeof(char));
-      strcpy (new_str, str);
-    }
-  else
-    new_str = NULL;
-  
-  return new_str;
-}
 
 int main (int argc, char *argv[])
 {
   int major, minor, micro;
-  char *tmp_version;
+  FILE *fp = fopen("conf.sdltest", "w");
 
-  /* This hangs on some systems (?)
-  system ("touch conf.sdltest");
-  */
-  { FILE *fp = fopen("conf.sdltest", "a"); if ( fp ) fclose(fp); }
+  if (fp) fclose(fp);
 
-  /* HP/UX 9 (%@#!) writes to sscanf strings */
-  tmp_version = my_strdup("$min_sdl_version");
-  if (sscanf(tmp_version, "%d.%d.%d", &major, &minor, &micro) != 3) {
+  if (sscanf("$min_sdl_version", "%d.%d.%d", &major, &minor, &micro) != 3) {
      printf("%s, bad version string\n", "$min_sdl_version");
      exit(1);
    }
@@ -124,17 +115,21 @@ int main (int argc, char *argv[])
     }
 }
 
-]])],[],[no_sdl=yes],[echo $ac_n "cross compiling; assumed OK... $ac_c"])
-       CFLAGS="$ac_save_CFLAGS"
-       CXXFLAGS="$ac_save_CXXFLAGS"
-       LIBS="$ac_save_LIBS"
-     fi
+]])], [], [no_sdl=yes], [echo $ac_n "cross compiling; assumed OK... $ac_c"])
+        CFLAGS="$ac_save_CFLAGS"
+        CXXFLAGS="$ac_save_CXXFLAGS"
+        LIBS="$ac_save_LIBS"
+      fi
+    fi
+    if test "x$no_sdl" = x ; then
+      AC_MSG_RESULT(yes)
+    else
+      AC_MSG_RESULT(no)
+    fi
   fi
   if test "x$no_sdl" = x ; then
-     AC_MSG_RESULT(yes)
-     ifelse([$2], , :, [$2])     
+     ifelse([$2], , :, [$2])
   else
-     AC_MSG_RESULT(no)
      if test "$SDL_CONFIG" = "no" ; then
        echo "*** The sdl-config script installed by SDL could not be found"
        echo "*** If SDL was installed in PREFIX, make sure PREFIX/bin is in"
@@ -156,7 +151,8 @@ int main(int argc, char *argv[])
 { return 0; }
 #undef  main
 #define main K_and_R_C_main
-]], [[ return 0; ]])],[ echo "*** The test program compiled, but did not run. This usually means"
+]], [[ return 0; ]])],
+        [ echo "*** The test program compiled, but did not run. This usually means"
           echo "*** that the run-time linker is not finding SDL or finding the wrong"
           echo "*** version of SDL. If it is not finding SDL, you'll need to set your"
           echo "*** LD_LIBRARY_PATH environment variable, or edit /etc/ld.so.conf to point"
@@ -164,7 +160,8 @@ int main(int argc, char *argv[])
           echo "*** is required on your system"
 	  echo "***"
           echo "*** If you have an old version installed, it is best to remove it, although"
-          echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"],[ echo "*** The test program failed to compile or link. See the file config.log for the"
+          echo "*** you may also be able to get things to work by modifying LD_LIBRARY_PATH"],
+        [ echo "*** The test program failed to compile or link. See the file config.log for the"
           echo "*** exact error that occured. This usually means SDL was incorrectly installed"
           echo "*** or that you have moved SDL since it was installed. In the latter case, you"
           echo "*** may want to edit the sdl-config script: $SDL_CONFIG" ])
