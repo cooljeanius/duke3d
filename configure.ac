@@ -2,7 +2,7 @@ dnl#                                               -*- Autoconf -*-
 dnl# Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([duke3d], [1.5])
+AC_INIT([duke3d],[1.5],[icculus@clutteredmind.org])
 AC_CONFIG_SRCDIR([extras/_animlib.h])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -17,10 +17,10 @@ AC_PROG_INSTALL
 AC_CHECK_LIB([c],[printf])dnl
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h limits.h malloc.h stdlib.h string.h])dnl
+AC_CHECK_HEADERS([fcntl.h limits.h malloc.h malloc/malloc.h])dnl
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_CHECK_HEADER_STDBOOL
+AC_HEADER_STDBOOL dnl# also "_CHECK"s it
 
 # Checks for library functions.
 AC_FUNC_ALLOCA

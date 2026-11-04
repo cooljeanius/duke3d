@@ -165,7 +165,7 @@ all: buildengine duke3d build
 @ifGNUmake@	$(CC) $(CFLAGS) -o $@ $<
 @ifGNUmake@endif
 
-audiolib/audiolib.a:
+audiolib/audiolib.a: audiolib/Makefile_orig
 	$(MAKE) -C audiolib -f Makefile_orig \
 	  CC="$(CC)" CFLAGS="$(CFLAGS)" LDLIBS="$(LDLIBS)" \
 	  CPPFLAGS="$(CPPFLAGS)"
@@ -196,7 +196,7 @@ duke3d: \
 build: astub.o
 	$(CC) $^ $(BUILDOBJS) buildengine/build.o $(LDLIBS) -o $@
 
-clean-local:
+clean-local: audiolib/Makefile_orig
 	$(MAKE) -C audiolib -f Makefile_orig clean
 	$(MAKE) -C buildengine -f Makefile_orig clean
 	rm -rf duke3d build *.o

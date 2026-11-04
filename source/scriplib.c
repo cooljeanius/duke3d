@@ -717,7 +717,7 @@ void SCRIPT_GetBoolean
    int32 scripthandle,
    char * sectionname,
    char * entryname,
-   boolean * bool
+   boolean * boolarg
    )
 {
 	STUBBED("GetBoolean");
@@ -990,7 +990,7 @@ void SCRIPT_PutBoolean
    int32 scripthandle,
    char * sectionname,
    char * entryname,
-   boolean bool
+   boolean boolarg
    )
 {
 	STUBBED("PutBoolean");
