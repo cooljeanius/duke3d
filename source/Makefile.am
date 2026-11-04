@@ -125,12 +125,14 @@ CFLAGS = -c -g $(SDL_CFLAGS) -DUSE_SDL=1 -DPLATFORM_UNIX=1 $(EXTRACFLAGS)
 @ifGNUmake@	# Always turn OFF strict aliasing, even when optimizing.
 @ifGNUmake@     # Otherwise, this is just an accident waiting to happen. -ryan
 @ifGNUmake@	CFLAGS += -fno-strict-aliasing
-@ifGNUmake@	CFLAGS += -W -Wall -Wno-unused -funsigned-char
 @ifGNUmake@	ifeq ($(strip $(macosx)),true)
+@ifGNUmake@		CFLAGS += -Wmost -Wextra -Wno-unused -Wnewline-eof
 @ifGNUmake@		OPTIMIZE = -O3 -mdynamic-no-pic -falign-loops=16
 @ifGNUmake@	else
+@ifGNUmake@		CFLAGS += -Wall -Wextra -Wno-unused -Wno-unused-result
 @ifGNUmake@		OPTIMIZE = -O2
 @ifGNUmake@	endif
+@ifGNUmake@	CFLAGS += -Wno-unused-parameter -funsigned-char
 @ifGNUmake@endif
 
 # Rename these to compile with the Intel compiler (v6.0)
